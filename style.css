@@ -586,14 +586,16 @@ body.dark-theme .address-input {
 }
 
 /* Bilingual text styling */
-.lang-en {
+.lang-en,
+.lang-jp-sub {
     display: block;
     font-size: 0.9em;
     color: var(--win-shadow);
     margin-top: 2px;
 }
 
-body.dark-theme .lang-en {
+body.dark-theme .lang-en,
+body.dark-theme .lang-jp-sub {
     color: var(--win-shadow);
     /* Adjust if needed for dark mode, win-shadow might be green or white */
 }
@@ -602,15 +604,17 @@ body.dark-theme .lang-en {
 .win-tooltip {
     display: none;
     position: absolute;
-    background-color: #ffffe1; /* Classic Win9x/2k tooltip yellow */
+    background-color: #ffffe1;
+    /* Classic Win9x/2k tooltip yellow */
     color: #000000;
     border: 1px solid #000000;
     padding: 3px 5px;
     font-size: 12px;
     font-family: 'MS PGothic', sans-serif;
-    pointer-events: none; /* Prevent tooltip from blocking mouse events */
+    pointer-events: none;
+    /* Prevent tooltip from blocking mouse events */
     z-index: 10000;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
     white-space: nowrap;
     line-height: 1.3;
 }
