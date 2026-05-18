@@ -84,6 +84,38 @@ async function initSite() {
             });
         }
     }
+
+    // Initialize custom instant tooltips
+    const buttons = document.querySelectorAll('.identity-btn');
+    if (buttons.length > 0) {
+        let tooltip = document.getElementById('custom-tooltip');
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'custom-tooltip';
+            tooltip.className = 'win-tooltip';
+            document.body.appendChild(tooltip);
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', (e) => {
+                const titleText = btn.getAttribute('data-title');
+                if (titleText) {
+                    tooltip.innerHTML = titleText.replace(/\n/g, '<br>');
+                    tooltip.style.display = 'block';
+                }
+            });
+
+            btn.addEventListener('mousemove', (e) => {
+                // Offset slightly from cursor so it doesn't flicker
+                tooltip.style.left = (e.pageX + 15) + 'px';
+                tooltip.style.top = (e.pageY + 15) + 'px';
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        });
+    }
 }
 
 // Run initialization on DOM content loaded

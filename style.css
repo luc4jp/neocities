@@ -597,3 +597,27 @@ body.dark-theme .lang-en {
     color: var(--win-shadow);
     /* Adjust if needed for dark mode, win-shadow might be green or white */
 }
+
+/* Custom Instant Tooltip */
+.win-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #ffffe1; /* Classic Win9x/2k tooltip yellow */
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 3px 5px;
+    font-size: 12px;
+    font-family: 'MS PGothic', sans-serif;
+    pointer-events: none; /* Prevent tooltip from blocking mouse events */
+    z-index: 10000;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+body.dark-theme .win-tooltip {
+    background-color: var(--win-face);
+    color: var(--win-text);
+    border: 1px solid var(--win-highlight);
+    box-shadow: 2px 2px 0px var(--win-shadow);
+}
