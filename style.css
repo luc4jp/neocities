@@ -584,3 +584,16 @@ body.dark-theme .address-input {
     background-color: var(--win-face);
     color: var(--win-text);
 }
+
+/* Bilingual text styling */
+.lang-en {
+    display: block;
+    font-size: 0.9em;
+    color: var(--win-shadow);
+    margin-top: 2px;
+}
+
+body.dark-theme .lang-en {
+    color: var(--win-shadow);
+    /* Adjust if needed for dark mode, win-shadow might be green or white */
+}
