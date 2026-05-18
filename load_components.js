@@ -25,6 +25,8 @@ async function initSite() {
         loadComponent('footer-container', 'footer.html')
     ]);
 
+    initWidgets();
+
     // Initialize Toggle Logic (must run AFTER menu.html is loaded)
     const themeBtn = document.getElementById('themeToggle');
     const fontBtn = document.getElementById('fontToggle');
@@ -120,3 +122,88 @@ async function initSite() {
 
 // Run initialization on DOM content loaded
 document.addEventListener('DOMContentLoaded', initSite);
+
+// Initialize Sidebar Widgets (Clock, Weather, Calendar)
+function initWidgets() {
+    // 1. Clocks
+    const localClock = document.getElementById('local-clock');
+    const japanClock = document.getElementById('japan-clock');
+    
+    function updateClocks() {
+        if (!localClock || !japanClock) return;
+        const now = new Date();
+        
+        // Local Time
+        localClock.textContent = now.toLocaleTimeString();
+        
+        // Japan Time
+        const jstOptions = { timeZone: 'Asia/Tokyo', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        japanClock.textContent = now.toLocaleTimeString('en-US', jstOptions);
+    }
+    
+    if (localClock || japanClock) {
+        updateClocks();
+        setInterval(updateClocks, 1000);
+    }
+
+    // 2. Weather (Hiroshima)
+    const weatherWidget = document.getElementById('weather-widget');
+    if (weatherWidget) {
+        // Open-Meteo API for Hiroshima
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=34.3853&longitude=132.4553&current_weather=true&timezone=Asia%2FTokyo')
+            .then(res => res.json())
+            .then(data => {
+                const cw = data.current_weather;
+                let condition = "Clear";
+                if (cw.weathercode >= 1 && cw.weathercode <= 3) condition = "Cloudy";
+                if (cw.weathercode >= 45 && cw.weathercode <= 48) condition = "Fog";
+                if (cw.weathercode >= 51 && cw.weathercode <= 67) condition = "Rain";
+                if (cw.weathercode >= 71 && cw.weathercode <= 82) condition = "Snow";
+                if (cw.weathercode >= 95) condition = "Thunderstorm";
+
+                weatherWidget.innerHTML = `
+                    <div style="font-size: 24px; margin-bottom: 5px;">${cw.temperature}°C</div>
+                    <div style="font-weight: bold; color: var(--win-title-blue);">${condition}</div>
+                `;
+            })
+            .catch(err => {
+                weatherWidget.textContent = "Weather unavailable";
+            });
+    }
+
+    // 3. Calendar (Current Month)
+    const calendarWidget = document.getElementById('calendar-widget');
+    if (calendarWidget) {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        
+        let calHtml = `<div style="font-weight: bold; margin-bottom: 5px; background: var(--win-title-blue); color: #fff;">${year} / ${month + 1}</div>`;
+        calHtml += `<table style="width: 100%; text-align: center; border-collapse: collapse; font-size: 10px;">`;
+        calHtml += `<tr style="background: var(--win-face);"><th style="color:red;">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th style="color:blue;">S</th></tr><tr>`;
+        
+        for (let i = 0; i < firstDay; i++) {
+            calHtml += `<td></td>`;
+        }
+        
+        let dayOfWeek = firstDay;
+        for (let day = 1; day <= daysInMonth; day++) {
+            let style = "";
+            if (dayOfWeek === 0) style = "color: red;";
+            if (dayOfWeek === 6) style = "color: blue;";
+            if (day === today.getDate()) style += " background-color: var(--win-title-blue); color: #fff; font-weight: bold;";
+            
+            calHtml += `<td style="${style}">${day}</td>`;
+            dayOfWeek++;
+            if (dayOfWeek > 6) {
+                calHtml += `</tr><tr>`;
+                dayOfWeek = 0;
+            }
+        }
+        calHtml += `</tr></table>`;
+        calendarWidget.innerHTML = calHtml;
+    }
+}
+
