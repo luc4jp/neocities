@@ -128,19 +128,19 @@ function initWidgets() {
     // 1. Clocks
     const localClock = document.getElementById('local-clock');
     const japanClock = document.getElementById('japan-clock');
-    
+
     function updateClocks() {
         if (!localClock || !japanClock) return;
         const now = new Date();
-        
+
         // Local Time
         localClock.textContent = now.toLocaleTimeString();
-        
+
         // Japan Time
         const jstOptions = { timeZone: 'Asia/Tokyo', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
         japanClock.textContent = now.toLocaleTimeString('en-US', jstOptions);
     }
-    
+
     if (localClock || japanClock) {
         updateClocks();
         setInterval(updateClocks, 1000);
@@ -179,22 +179,22 @@ function initWidgets() {
         const month = today.getMonth();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
-        
+
         let calHtml = `<div style="font-weight: bold; margin-bottom: 5px; background: var(--win-title-blue); color: #fff;">${year} / ${month + 1}</div>`;
         calHtml += `<table style="width: 100%; text-align: center; border-collapse: collapse; font-size: 10px;">`;
         calHtml += `<tr style="background: var(--win-face);"><th style="color:red;">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th style="color:blue;">S</th></tr><tr>`;
-        
+
         for (let i = 0; i < firstDay; i++) {
             calHtml += `<td></td>`;
         }
-        
+
         let dayOfWeek = firstDay;
         for (let day = 1; day <= daysInMonth; day++) {
             let style = "";
             if (dayOfWeek === 0) style = "color: red;";
             if (dayOfWeek === 6) style = "color: blue;";
             if (day === today.getDate()) style += " background-color: var(--win-title-blue); color: #fff; font-weight: bold;";
-            
+
             calHtml += `<td style="${style}">${day}</td>`;
             dayOfWeek++;
             if (dayOfWeek > 6) {
@@ -204,6 +204,20 @@ function initWidgets() {
         }
         calHtml += `</tr></table>`;
         calendarWidget.innerHTML = calHtml;
+    }
+
+    // 4. Chatango BBS
+    const chatangoContainer = document.getElementById('chatango-container');
+    if (chatangoContainer) {
+        const script = document.createElement('script');
+        script.id = 'cid0020000440104421918';
+        script.dataset.cfasync = 'false';
+        script.async = true;
+        script.src = '//st.chatango.com/js/gz/emb.js';
+        script.style.width = '100%';
+        script.style.height = '100%';
+        script.textContent = '{"handle":"luc4jpbbs","arch":"js","styles":{"a":"C8C8C8","b":100,"c":"000000","d":"000000","k":"C8C8C8","l":"C8C8C8","m":"C8C8C8","p":"10","q":"C8C8C8","r":100,"fwtickm":1}}';
+        chatangoContainer.appendChild(script);
     }
 }
 

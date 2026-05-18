@@ -4,11 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lucaがサボりながら更新するホムペ</title>
+    <title>lucaのホムペ（令和）</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <div id="neocities-thumbnail"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background: url('https://bylucajp.neocities.org/images/resources/CM200146.JPG') center/cover no-repeat;">
+    </div>
+    <script>
+        if (!navigator.userAgent.includes('HeadlessChrome')) {
+            document.getElementById('neocities-thumbnail').style.display = 'none';
+        }
+    </script>
 
     <div class="container">
         <!-- Left Sidebar (Loaded via JS) -->
