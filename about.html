@@ -22,23 +22,66 @@
             <h1>★ About Me ★</h1>
 
             <h2>Basic Info</h2>
-            <ul style="line-height: 2;">
-                <li><strong>Name:</strong> luca</li>
-                <li><strong>Location:</strong> Hiroshima, Japan 🇯🇵</li>
-                <li><strong>Occupation:</strong> Videographer</li>
-                <li><strong>Languages:</strong> Japanese (Native), English (Learning)</li>
-            </ul>
+            <fieldset>
+                <legend>Personal Data</legend>
+                <table class="profile-table">
+                    <tr>
+                        <th>Location</th>
+                        <td>Hiroshima, Japan</td>
+                    </tr>
+                    <tr>
+                        <th>Birthday</th>
+                        <td>XXXX.01.XX</td>
+                    </tr>
+                    <tr>
+                        <th>Likes</th>
+                        <td>
+                            <span class="lang-jp">画像/動画編集、カメラ、散歩、ハロプロ、緑茶</span>
+                            <span class="lang-en">Photo/Video Editing, Photography, Walking, Hello! Project idols, Green
+                                tea</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Dislikes</th>
+                        <td>
+                            <span class="lang-jp">高い古着</span>
+                            <span class="lang-en">Overpriced used clothing</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Environment</th>
+                        <td>Macbook Air (M4), VS Code</td>
+                    </tr>
+                </table>
+            </fieldset>
 
             <hr>
 
             <h2>My Story</h2>
-            <p>
-                Hello! Thank you for finding my little corner of the internet.
-                I am a Japanese creator based in Hiroshima. I grew up during the transition from the Heisei era to the
-                Reiwa era,
-                and I've always been fascinated by the early internet culture of Japan (like flash sites, and personal
-                homepages).
-            </p>
+            <div class="profile-header">
+                <div class="profile-icon">
+                    <!-- アイコン画像 -->
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDdmN2g2YWV1MGt3ZDd0cThvdnp1ZmZ0MGx1enRuZmY5dGx6dmhsOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif"
+                        width="100" height="100" alt="Icon">
+                </div>
+                <div class="profile-basic-info">
+                    <div class="profile-name">Luca</div>
+                    <p>
+                        <span class="lang-jp">
+                            90年代後半や00年代の雰囲気が好きです。<br>
+                            初めて与えられたPCがたしかNEC Mateだったので、Win2000に触発されたサイトを作りました。<br>
+                            カメラを持って散歩に行くのと、動画編集が趣味です。
+                        </span>
+                        <span class="lang-en">
+                            I belong to the generation raised in the Heisei Era, and I am particularly fond of the good
+                            old late '90s and '00s aesthetic.<br>
+                            The aesthetic I pursue is inspired by the NEC Mate, which, if memory serves, was the first
+                            personal computer entrusted to me.<br>
+                            My hobbies are going out with my mirrorless camera and video editing.
+                        </span>
+                    </p>
+                </div>
+            </div>
             <p>
                 時代は個人サイトや！
             </p>
@@ -54,19 +97,51 @@
                 英語でリール動画（Shorts）などを作っています。たまに長尺のVlogや解説動画をYoutubeにあげています。顔出しはしていません。
             </p>
 
-            <h2>Likes & Interests</h2>
-            <ul style="line-height: 2;">
-                <li><strong>Music:</strong> Hello! Project, HR/HM</li>
-                <li><strong>Aesthetics:</strong> Y2K, Heisei Retro, Cyberpunk</li>
-                <li><strong>Gear:</strong> Sony mirrorless cameras, iPhone, Xiaomi</li>
-            </ul>
+            <fieldset class="identity-section">
+                <legend>Buttons</legend>
+                <div class="button-container">
+                    <img src="https://i.imgur.com/wqvfdXO.png" class="identity-btn" data-title="日本人 / Japanese">
+                    <img src="https://i.imgur.com/BPYwrtz.png" class="identity-btn"
+                        data-title="日本語ネイティブ / Native Japanese speaker">
+                    <img src="https://i.imgur.com/jgeciGJ.png" class="identity-btn"
+                        data-title="英語はそこそこ / My English is... okay-ish">
+                    <img src="https://i.imgur.com/JPbBP0q.png" class="identity-btn"
+                        data-title="一生英語を勉強中 / Forever studying English">
+                    <img src="https://i.imgur.com/F10c885.png" class="identity-btn" data-title="右利き / Right-handed">
+                    <img src="https://i.imgur.com/i2laZa3.png" class="identity-btn" data-title="丑 / Year of the Ox">
+                    <img src="https://i.imgur.com/sNuSVZA.png" class="identity-btn" data-title="山羊 / Capricorn">
+                    <img src="https://i.imgur.com/cdqdRxL.png" class="identity-btn"
+                        data-title="据え置きで楽しみたい派 / Definitely a console gamer">
+                    <img src="https://i.imgur.com/sxmoj5E.png" class="identity-btn"
+                        data-title="何十周もカジートでやってる / Done like a dozen Khajiit runs">
+                    <img src="https://i.imgur.com/mmoRz30.png" class="identity-btn"
+                        data-title="メロデスがかなり好きです / Pretty big on Melodic Death Metal">
+                    <img src="https://i.imgur.com/SRgBmST.png" class="identity-btn"
+                        data-title="JacksonのRandy V愛用 / My go-to is the Jackson Randy V">
+                    <img src="https://i.imgur.com/v75VdUE.png" class="identity-btn"
+                        data-title="00-10年代は追ってた / Used to follow the 00s-10s scene">
+                    <img src="https://i.imgur.com/cFHVk5Q.png" class="identity-btn"
+                        data-title="盆栽やってる / Parenting Bonsai">
+                    <img src="https://i.imgur.com/ifVkkqf.png" class="identity-btn"
+                        data-title="魚が好き / Fish & Sushi lover">
+                    <img src="https://i.imgur.com/ioHnU6S.png" class="identity-btn"
+                        data-title="ルピシアでめっちゃお茶買ってる / Lupicia tea addict">
+                    <img src="https://i.postimg.cc/0yMJZ5V2/Mac_OS.png" class="identity-btn"
+                        data-title="長年WinユーザーだったからMacのショートカットとか全くわかってない / Still lost with Mac shortcuts">
+                    <img src="https://i.imgur.com/CJhLgXY.png" class="identity-btn"
+                        data-title="結局紗々が一番美味しい / Sasha is my #1 chocolate">
+                    <img src="images/resources/ib_Hello!_Project.png" class="identity-btn"
+                        data-title="ミニモニ。世代 / Mini Moni Generation">
+                    <img src="images/resources/ib_H!P_Idols.png" class="identity-btn"
+                        data-title="オタクだからバーイベのセトリある / I already planned my birthday event setlist">
 
-            <p style="text-align: center; margin-top: 40px;">
-                <a href="index.html">← Back to Top</a>
-            </p>
+                </div>
+                <p style="text-align: center; margin-top: 40px;">
+                    <a href="index.html">← Back to Top</a>
+                </p>
 
-            <!-- Decorative Footer -->
-            <div id="footer-container"></div>
+                <!-- Decorative Footer -->
+                <div id="footer-container"></div>
         </div>
     </div>
 

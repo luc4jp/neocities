@@ -291,6 +291,43 @@ body.dark-theme .whats-new-box {
     margin-right: 5px;
 }
 
+/* Win2k Content UI Elements */
+.win-groupbox {
+    border-top: 2px solid var(--win-shadow);
+    border-left: 2px solid var(--win-shadow);
+    border-bottom: 2px solid var(--win-highlight);
+    border-right: 2px solid var(--win-highlight);
+    padding: 15px 10px 10px 10px;
+    margin-bottom: 20px;
+}
+
+body.dark-theme .win-groupbox {
+    border-top: 2px solid var(--win-shadow);
+    border-left: 2px solid var(--win-shadow);
+    border-bottom: 2px solid var(--win-highlight);
+    border-right: 2px solid var(--win-highlight);
+}
+
+.win-groupbox legend {
+    padding: 0 5px;
+    color: var(--win-text);
+    font-family: var(--font-heading);
+    font-weight: bold;
+}
+
+.inset-box {
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    padding: 10px;
+}
+
+body.dark-theme .inset-box {
+    background-color: var(--win-face);
+}
+
 /* Tiny Header-style Toggles (Win2k Buttons) */
 .theme-toggle-container {
     display: flex;
