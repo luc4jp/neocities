@@ -10,12 +10,9 @@
 
 <body>
 
-    <div id="neocities-thumbnail"
-        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background: url('https://bylucajp.neocities.org/images/resources/CM200146.JPG') center/cover no-repeat;">
-    </div>
     <script>
-        if (!navigator.userAgent.includes('HeadlessChrome')) {
-            document.getElementById('neocities-thumbnail').style.display = 'none';
+        if (navigator.userAgent.includes('Screenjesus')) {
+            document.body.innerHTML = '<img src="https://bylucajp.neocities.org/images/resources/CM200146.JPG" style="width:100vw;height:100vh;object-fit:cover;position:fixed;top:0;left:0;z-index:999999;">';
         }
     </script>
 
