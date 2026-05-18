@@ -9,6 +9,6 @@ const diaryPosts = [
         imageUrl: "",
         text_en: `Yesterday was the final of "THE SECOND", a stand-up comedy competition. 
         My favorite contestants lost, which made me sad.`,
-        text_ja: `昨日は、THE SECONDという漫才の大会があって、自分の好きな人たちは負けてしまいました... 黒帯と金属の対決見たかったな`
+        text_ja: `昨日は、THE SECONDという漫才の大会があって、自分の好きな人たちは負けてしまいました... でもいい大会だった！`
     }
 ];
