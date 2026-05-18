@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Diary / 日記</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left Sidebar (Loaded via JS) -->
+        <div id="sidebar-container" class="sidebar"></div>
+
+        <!-- Right Main Content -->
+        <div class="window-box main-content">
+            <!-- Decorative Header -->
+            <div id="header-container"></div>
+
+            <h1>★ Photo Diary / 日記 ★</h1>
+            <p>A simple space to share my daily.</p>
+
+            <hr>
+
+            <div id="diary-container" class="diary-grid">
+                <!-- Posts will be injected here by JavaScript -->
+            </div>
+
+            <p style="text-align: center; margin-top: 40px;">
+                <a href="index.html">← Back to Top</a>
+            </p>
+
+            <!-- Decorative Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <!-- Load Components and Diary Data -->
+    <script src="load_components.js"></script>
+    <script src="posts.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Diary Posts from posts.js
+            const container = document.getElementById('diary-container');
+
+            if (typeof diaryPosts !== 'undefined' && diaryPosts.length > 0) {
+                let htmlContent = '';
+                diaryPosts.forEach(post => {
+                    let imageHtml = '';
+                    if (post.imageUrl && post.imagePlaceholder) {
+                        imageHtml = `<div class="diary-photo-frame"><div class="diary-photo-placeholder"><span>[ Place your photo here: ${post.imageUrl} ]</span></div></div>`;
+                    } else if (post.imageUrl && !post.imagePlaceholder) {
+                        imageHtml = `<div class="diary-photo-frame"><img src="${post.imageUrl}" alt="Diary Image" style="width: 100%; display: block;"></div>`;
+                    }
+
+                    htmlContent += `
+                <div class="diary-item">
+                    <div class="diary-meta">
+                        <span class="diary-date">${post.date}</span>
+                        <span>${post.author}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    ${imageHtml}
+                    <p>${post.text_en}</p>
+                    <p>${post.text_ja}</p>
+                </div>
+                `;
+                });
+                container.innerHTML = htmlContent;
+            } else {
+                container.innerHTML = '<p>No posts yet.</p>';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

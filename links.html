@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links / リンク集</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .banner-88x31 {
+            width: 88px;
+            height: 31px;
+            border: 1px solid var(--border-color);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            background-color: var(--grid-color);
+            margin-right: 5px;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+        .banner-88x31:hover {
+            border-color: var(--link-hover-bg);
+            background-color: var(--link-hover-bg);
+            color: var(--box-bg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left Sidebar (Loaded via JS) -->
+        <div id="sidebar-container" class="sidebar"></div>
+
+        <!-- Right Main Content -->
+        <div class="window-box main-content">
+            <!-- Decorative Header -->
+            <div id="header-container"></div>
+
+            <h1>★ Links / リンク集 ★</h1>
+            <p>A collection of my other profiles, friends, and cool sites on the internet.</p>
+
+            <hr>
+
+            <h2>My Official Links</h2>
+            <ul style="line-height: 2;">
+                <li><a href="https://instagram.com/luc4__jp" target="_blank">Instagram (@luc4__jp)</a> - My main
+                    portfolio and daily reels.</li>
+                <li><a href="https://www.youtube.com/channel/UCjh7JOji5plI8Z0usnpWPYg" target="_blank">YouTube</a> -
+                    In-depth videos about Japanese culture and Hiroshima.</li>
+            </ul>
+
+            <!-- Decorative Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <script src="load_components.js"></script>
+</body>
+
+</html>

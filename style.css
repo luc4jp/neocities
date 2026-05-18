@@ -1,0 +1,549 @@
+/* Windows 2000 Classic Style */
+
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Jersey+25&family=Space+Grotesk:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+:root {
+    /* Windows 2000 Classic Colors */
+    --win-desktop: #3a6ea5;
+    --win-face: #d4d0c8;
+    --win-highlight: #ffffff;
+    --win-shadow: #808080;
+    --win-dark-shadow: #404040;
+    --win-title-blue: #0a246a;
+    --win-title-gradient: #a6caf0;
+    --win-text: #000000;
+    --win-link: #0000ff;
+
+    /* Backward compatibility for inline styles */
+    --box-bg: #ffffff;
+    --grid-color: var(--win-face);
+    --border-color: var(--win-shadow);
+    --shadow-color: var(--win-dark-shadow);
+    --accent-color: var(--win-title-blue);
+
+    --font-heading: 'Space Grotesk', 'Zen Maru Gothic', sans-serif;
+    --font-body: 'Space Grotesk', 'Zen Maru Gothic', sans-serif;
+}
+
+/* Alternate Font Theme Variables */
+body.font-theme-alt {
+    --font-heading: 'Jersey 25', 'DotGothic16', monospace;
+    --font-body: 'Jersey 25', 'DotGothic16', monospace;
+}
+
+/* Dark Mode Variables (Windows High Contrast Black) */
+body.dark-theme {
+    --win-desktop: #000000;
+    --win-face: #000000;
+    --win-highlight: #ffffff;
+    --win-shadow: #00ff00;
+    --win-dark-shadow: #ffffff;
+    --win-title-blue: #800080;
+    --win-title-gradient: #800080;
+    --win-text: #00ff00;
+    --win-link: #ffff00;
+
+    --box-bg: #000000;
+    --grid-color: var(--win-face);
+    --border-color: var(--win-highlight);
+    --shadow-color: var(--win-highlight);
+    --accent-color: var(--win-text);
+}
+
+/* Text Size Large Theme Variables */
+body.text-size-large {
+    font-size: 20px;
+}
+
+body.text-size-large h1 {
+    font-size: 32px;
+}
+
+body.text-size-large h2 {
+    font-size: 24px;
+}
+
+body.text-size-large .marquee-text {
+    font-size: 20px;
+}
+
+body.text-size-large .sidebar-title {
+    font-size: 18px;
+}
+
+body.text-size-large .whats-new-box {
+    font-size: 20px;
+}
+
+body.text-size-large .diary-meta {
+    font-size: 18px;
+}
+
+body {
+    background-color: var(--win-desktop);
+    color: var(--win-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    /* Classic UI size */
+    line-height: 1.5;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+a {
+    color: var(--win-link);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--win-link);
+}
+
+/* Window-like boxes */
+.window-box {
+    background-color: var(--box-bg);
+    border-top: 2px solid var(--win-highlight);
+    border-left: 2px solid var(--win-highlight);
+    border-bottom: 2px solid var(--win-dark-shadow);
+    border-right: 2px solid var(--win-dark-shadow);
+    box-shadow: inset -1px -1px 0px var(--win-shadow), inset 1px 1px 0px #dfdfdf;
+    padding: 2px;
+    margin-bottom: 20px;
+    color: var(--win-text);
+}
+
+body.dark-theme .window-box {
+    box-shadow: inset -1px -1px 0px var(--win-shadow), inset 1px 1px 0px var(--win-shadow);
+}
+
+/* Inside window padding */
+.main-content {
+    padding: 15px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 24px;
+    border-bottom: 1px solid var(--win-shadow);
+    padding-bottom: 4px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--win-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    margin: 15px 0;
+}
+
+/* Base Image and Video Responsiveness */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Classic 2-Column Layout Container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+
+/* Left Sidebar */
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+/* Window Title Bar */
+.sidebar-title {
+    background: linear-gradient(90deg, var(--win-title-blue), var(--win-title-gradient));
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    padding: 3px 5px;
+    margin: 0 0 10px 0;
+}
+
+body.dark-theme .sidebar-title {
+    color: var(--win-text);
+}
+
+/* Adjust Sidebar padding */
+.sidebar-box {
+    padding: 2px;
+}
+
+.sidebar-box p {
+    padding: 5px;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+}
+
+body.dark-theme .menu-list {
+    background-color: var(--win-face);
+}
+
+.menu-list li {
+    margin-bottom: 4px;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: var(--win-text);
+}
+
+.menu-list li a:hover {
+    text-decoration: underline;
+    background-color: var(--win-title-blue);
+    color: #ffffff;
+}
+
+.menu-list li::before {
+    content: "📁 ";
+    font-size: 16px;
+}
+
+/* Right Main Content Area */
+.main-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Marquee simulation */
+.marquee-wrapper {
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    padding: 2px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body.dark-theme .marquee-wrapper {
+    background-color: var(--win-face);
+}
+
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    font-size: 16px;
+    color: var(--win-text);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+.whats-new-box {
+    height: 120px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    padding: 5px;
+    font-size: 15px;
+}
+
+body.dark-theme .whats-new-box {
+    background-color: var(--win-face);
+}
+
+.date-stamp {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Tiny Header-style Toggles (Win2k Buttons) */
+.theme-toggle-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    background-color: var(--win-face);
+    padding: 5px;
+}
+
+.theme-toggle-btn-tiny {
+    background-color: var(--win-face);
+    color: var(--win-text);
+    border-top: 1.5px solid var(--win-highlight);
+    border-left: 1.5px solid var(--win-highlight);
+    border-bottom: 1.5px solid var(--win-dark-shadow);
+    border-right: 1.5px solid var(--win-dark-shadow);
+    font-size: 13px;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.theme-toggle-btn-tiny:active {
+    border-top: 1.5px solid var(--win-dark-shadow);
+    border-left: 1.5px solid var(--win-dark-shadow);
+    border-bottom: 1.5px solid var(--win-highlight);
+    border-right: 1.5px solid var(--win-highlight);
+    padding: 4px 7px 2px 9px;
+}
+
+/* Photo Diary Layout */
+.diary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.diary-item {
+    border-bottom: 1px dashed var(--win-shadow);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.diary-item:last-child {
+    border-bottom: none;
+}
+
+.diary-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--win-shadow);
+    margin-bottom: 8px;
+}
+
+body.dark-theme .diary-meta {
+    color: var(--win-text);
+}
+
+.diary-photo-frame {
+    background-color: var(--win-face);
+    border-top: 1px solid var(--win-highlight);
+    border-left: 1px solid var(--win-highlight);
+    border-bottom: 1px solid var(--win-dark-shadow);
+    border-right: 1px solid var(--win-dark-shadow);
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+.diary-photo-placeholder {
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--win-shadow);
+    aspect-ratio: 16/9;
+}
+
+body.dark-theme .diary-photo-placeholder {
+    background-color: var(--win-face);
+    color: var(--win-text);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .theme-toggle-container {
+        justify-content: flex-start;
+    }
+}
+
+/* Main Window Header (Win2k style) */
+.main-window-header {
+    margin: -15px -15px 15px -15px;
+    /* Offset main-content padding */
+    background-color: var(--win-face);
+    border-bottom: 2px solid var(--win-dark-shadow);
+    color: var(--win-text);
+}
+
+body.dark-theme .main-window-header {
+    border-bottom: 2px solid var(--win-shadow);
+}
+
+.window-title-bar {
+    background: linear-gradient(90deg, var(--win-title-blue), var(--win-title-gradient));
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 3px 2px 5px;
+}
+
+body.dark-theme .window-title-bar {
+    color: var(--win-text);
+}
+
+.window-title-text {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.win-control-btn {
+    background-color: var(--win-face);
+    color: var(--win-text);
+    border-top: 1px solid var(--win-highlight);
+    border-left: 1px solid var(--win-highlight);
+    border-bottom: 1px solid var(--win-dark-shadow);
+    border-right: 1px solid var(--win-dark-shadow);
+    font-size: 12px;
+    font-family: 'MS PGothic', sans-serif;
+    padding: 0 5px;
+    height: 20px;
+    font-weight: bold;
+    cursor: default;
+    line-height: 18px;
+}
+
+body.dark-theme .win-control-btn {
+    border-bottom: 1px solid var(--win-shadow);
+    border-right: 1px solid var(--win-shadow);
+}
+
+.win-control-btn:active {
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    padding: 1px 3px 0 5px;
+}
+
+body.dark-theme .win-control-btn:active {
+    border-top: 1px solid var(--win-shadow);
+    border-left: 1px solid var(--win-shadow);
+}
+
+.window-menu-bar {
+    display: flex;
+    padding: 2px 5px;
+    gap: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--win-highlight);
+    font-family: var(--font-body);
+}
+
+.menu-item {
+    cursor: default;
+    padding: 1px 4px;
+}
+
+.menu-item:hover {
+    background-color: var(--win-title-blue);
+    color: #ffffff;
+}
+
+body.dark-theme .menu-item:hover {
+    color: var(--win-face);
+}
+
+.window-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 4px 5px;
+    gap: 5px;
+    border-top: 1px solid var(--win-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+}
+
+.toolbar-divider {
+    width: 2px;
+    height: 20px;
+    background-color: var(--win-shadow);
+    border-right: 1px solid var(--win-highlight);
+    margin: 0 5px;
+}
+
+.window-address-bar {
+    display: flex;
+    align-items: center;
+    padding: 4px 5px;
+    font-size: 14px;
+    border-top: 1px solid var(--win-shadow);
+    border-bottom: 1px solid var(--win-shadow);
+    font-family: var(--font-body);
+}
+
+.window-address-bar span {
+    margin-right: 10px;
+    color: var(--win-shadow);
+}
+
+body.dark-theme .window-address-bar span {
+    color: var(--win-text);
+}
+
+.address-input {
+    flex-grow: 1;
+    background-color: #ffffff;
+    border-top: 1px solid var(--win-dark-shadow);
+    border-left: 1px solid var(--win-dark-shadow);
+    border-bottom: 1px solid var(--win-highlight);
+    border-right: 1px solid var(--win-highlight);
+    padding: 2px 5px;
+    color: #000000;
+}
+
+body.dark-theme .address-input {
+    background-color: var(--win-face);
+    color: var(--win-text);
+}
