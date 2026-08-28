@@ -1,20 +1,32 @@
 <div class="window-box sidebar-box">
     <div class="sidebar-title">MENU</div>
     <ul class="menu-list">
-        <li><a href="index.html">Top / トップ</a></li>
+        <li><a href="home.html">Top / トップ</a></li>
         <li><a href="about.html">About / プロフィール</a></li>
         <li><a href="diary.html">Diary / 日記</a></li>
-        <li><a href="shrine.html">H!P Shrine / ハロプロ</a></li>
-        <li><a href="cinema.html">Movie / 映像</a></li>
+        
+        <li>
+            <a href="hpshrine.html">H!P Shrine / ハロプロ</a>
+            <ul class="submenu-list">
+                <li><a href="hpshrine.html">Current Groups</a></li>
+                <li><a href="hpshrine2.html">Past Units & Graduates</a></li>
+            </ul>
+        </li>
+
+        <li><a href="movie.html">Movie / 映像</a></li>
         <li><a href="links.html">Links / リンク</a></li>
+            <ul class="submenu-list">
+                <li><a href="links.html">My sites</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
         <li><a href="https://bylucajp.atabook.org/" target="_blank">BBS / 掲示板</a></li>
     </ul>
 </div>
 
 <!-- Calendar Widget -->
-<div class="window-box sidebar-box">
+<div class="window-box sidebar-box" style="text-align: center;">
     <div class="sidebar-title">CALENDAR</div>
-    <div id="calendar-widget" style="padding: 2px; background-color: #fff; border: 1px inset var(--win-shadow);">
+    <div id="calendar-widget" style="padding: 2px; background-color: #fff; border: 1px inset var(--win-shadow); text-align: center;">
         <!-- Calendar will be generated here -->
     </div>
 </div>
@@ -22,10 +34,10 @@
 <!-- Clock Widget -->
 <div class="window-box sidebar-box" style="text-align: center; font-size: 13px; font-family: var(--font-body);">
     <div class="sidebar-title">CLOCK</div>
-    <div style="padding: 5px; background: #000; color: #0f0; border: 1px inset var(--win-shadow);">
-        <div style="color: #fff; font-size: 10px; margin-bottom: 2px;">Your Local Time</div>
+    <div class="clock-display" style="padding: 5px; background: #000; color: #0f0; border: 1px inset var(--win-shadow); text-align: center;">
+        <div class="clock-label" style="color: #fff; font-size: 10px; margin-bottom: 2px;">Your Local Time</div>
         <div id="local-clock" style="font-weight: bold;">--:--:--</div>
-        <div style="color: #fff; font-size: 10px; margin-top: 5px; margin-bottom: 2px;">Japan Time (JST)</div>
+        <div class="clock-label" style="color: #fff; font-size: 10px; margin-top: 5px; margin-bottom: 2px;">Japan Time (JST)</div>
         <div id="japan-clock" style="font-weight: bold;">--:--:--</div>
     </div>
 </div>
@@ -33,7 +45,7 @@
 <!-- Weather Widget -->
 <div class="window-box sidebar-box" style="text-align: center; font-size: 12px;">
     <div class="sidebar-title">HIROSHIMA</div>
-    <div id="weather-widget" style="padding: 5px; background-color: #fff; border: 1px inset var(--win-shadow);">
+    <div id="weather-widget" style="padding: 5px; background-color: #fff; border: 1px inset var(--win-shadow); text-align: center;">
         Loading weather...
     </div>
 </div>
