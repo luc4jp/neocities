@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello! Project Shrine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left Sidebar (Loaded via JS) -->
+        <div id="sidebar-container" class="sidebar"></div>
+
+        <!-- Right Main Content -->
+        <div class="window-box main-content">
+            <!-- Decorative Header -->
+            <div id="header-container"></div>
+
+            <h1>★ Hello! Project Shrine ★</h1>
+            <p>Welcome to my fan space. I love Japanese idols, especially Hello! Project.</p>
+
+            <hr>
+
+            <!-- ℃-ute -->
+            <h2>℃-ute (キュート)</h2>
+            <p>
+                <span>Overwhelming star power, almost violent...</span>
+                <span class="lang-jp-sub">圧倒的華、暴力的ですらある、、</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/esXmLmn8278?si=s11iS9BEYdC3y4N3" title="℃-ute Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>まっさらブルージーンズもそうなんですけど、矢島舞美さんのクセでかかとも動いちゃうの好きなんですよね</em>
+            </div>
+
+            <!-- Berryz Kobo -->
+            <h2>Berryz Kobo (Berryz工房)</h2>
+            <p>
+                <span>I'm from the Inazuma Eleven generation, so I've loved it forever.</span>
+                <span class="lang-jp-sub">イナイレ世代だからずっと大好き</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/6dl3HMYRFFI?si=7_G-HM0BVlJRerLf" title="Berryz Kobo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>ももちの幸せをとにかく願っています</em>
+            </div>
+
+            <!-- Kobushi Factory -->
+            <h2>Kobushi Factory (こぶしファクトリー)</h2>
+            <p>
+                <span>Listening to covers by various Hello! Project members made me go, 'Wait, this is way too good 😭.' The a cappella is amazing, and the intensity of their growls/belting is incredible.</span>
+                <span class="lang-jp-sub">いろんなハロメンによるカバーを聴いて、「え、良すぎ😭」ってなった。アカペラもすごいし、がなりの強さがすごい</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/NDWo7djYaHU?si=pdvikIIrKsPIBUZp" title="Kobushi Factory Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>れいれいがJuiceで続けてくれていることが嬉しい</em>
+            </div>
+
+            <!-- Country Girls -->
+            <h2>Country Girls (カントリー・ガールズ)</h2>
+            <p>
+                <span>What they left behind in such a short 5-year active period is truly monumental. I often find myself wishing they could have kept going longer...</span>
+                <span class="lang-jp-sub">5年という短い活動期間で残したものがかなり偉大。もっと続いていてくれたらと思うことも多い、、</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/03lXn-ASIAM?si=l4yQpOKYBxP97x4S" title="Country Girls Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>あざと可愛いのにやな感じがしないってすごいかも</em>
+            </div>
+
+            <!-- Melon Kinenbi -->
+            <h2>Melon Kinenbi (メロン記念日)</h2>
+            <p>
+                <span>As the saying goes, there are so many songs that somehow sound familiar even if you're not from that generation.</span>
+                <span class="lang-jp-sub">世代じゃなくても何故か聞き馴染みのある楽曲が多いでお馴染み</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/jKk-03I6v6g?si=Fkbcii_ZViOQly61" title="Melon Kinenbi Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>このMVなんでこういうことにしたのか知ってる人いたら絶対に教えてほしい</em>
+            </div>
+
+            <!-- Taiyo to Ciscomoon -->
+            <h2>Taiyo to Ciscomoon (太陽とシスコムーン)</h2>
+            <p>
+                <span>I think it's so unfair how their singing style and stage presence give off this sense of adult composure.</span>
+                <span class="lang-jp-sub">歌い方や佇まいに、大人の余裕を感じさせるのかなりずるいと思っている</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/njYr0JbEBwc?si=KFDMa4t-OgCNXwNN" title="Taiyo to Ciscomoon Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>宇宙でLa ta taのMVがかなりEarth Wind and Fireなのリスペクトをかなり感じます</em>
+            </div>
+
+            <!-- Buono! -->
+            <h2>Buono! (ボーノ！)</h2>
+            <p>
+                <span>As a unit, I genuinely think they're legendary.</span>
+                <span class="lang-jp-sub">ユニットとしてはほんとに伝説だと思う</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/bC22p3o1TYQ?si=sCXjpkgR8tlVe-uZ" title="Buono! Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>これ突然公開されて、ヲタク騒然としたんですよ</em>
+            </div>
+
+            <!-- Minimoni. -->
+            <h2>Minimoni. (ミニモニ。)</h2>
+            <p>
+                <span>My Hello! Project wota life started right here—I'm totally from that generation. I even had the Minimoni Game of Life!</span>
+                <span class="lang-jp-sub">わたしのハロヲタ人生はここから始まった、もうほんと世代です。ミニモニ。の人生ゲームも持ってた</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/jrvfCNv4lyE?si=D1EKW3sW7_trCizA" title="Minimoni. Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>ジャンケンぴょんを初めて聴いた時、可愛いってこういうことかってわかった</em>
+            </div>
+
+            <!-- DEF DIVA -->
+            <h2>DEF.DIVA (デフディヴァ)</h2>
+            <p>
+                <span>The member lineup is made up of people so gorgeous that it's insane—I feel like I'm going to pass out.</span>
+                <span class="lang-jp-sub">嬉しすぎて失神してしまいそうなメンバーで構成されていてえぐいです</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/46QXsuaB898?si=cyez0Za5FGZliofe" title="DEF DIVA Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>歌唱メンの中にいる石川梨華さんの甘い声がスッと入ってくるの好き</em>
+            </div>
+            
+            <!-- High-King -->
+            <h2>High-King (ハイ・キング)</h2>
+            <p>
+                <span>The kind of unit where you just want them to form the ultimate lineup for that exact moment/timing and drop a few tracks.</span>
+                <span class="lang-jp-sub">その時・そのタイミングの最強ユニットを作って何曲か出してほしいってなるユニット</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/_1HreSTRjVU?si=lBoBcDbKUv_7Kveu" title="ZYX Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>まだエッグ時代のゆうかりん、スマイレージと違って、こっちのかっこいい路線だからこそ映えるキャンディボイスがたまらない😭</em>
+            </div>
+
+            <!-- ZYX -->
+            <h2>ZYX (ジックス)</h2>
+            <p>
+                <span>It's so heartwarming to see Yaguchi mixed in with the little kids even though she's well into adulthood now.</span>
+                <span class="lang-jp-sub">十分大人の年齢になってるのにちびっこに混じってるやぐっちゃんが微笑ましい</span>
+            </p>
+            <div class="video-container" style="margin-bottom: 15px;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/yuNt0brrUFg?si=v9kq9CURraj3wnSC" title="ZYX Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div
+                style="border: 2px dashed var(--border-color); padding: 15px; margin-bottom: 20px; background-color: var(--grid-color);">
+                <em>冬生まれだから、バーイベは白いTOKYO絶対歌います（ハロヲタは架空バーイベのセトリ作りがち）</em>
+            </div>
+
+            <!-- ページナビゲーションリンク -->
+            <p style="text-align: center; margin-top: 40px;">
+                <a href="hpshrine.html">← Prev Page</a> | <a href="home.html">Back to Top</a>
+            </p>
+
+            <!-- Decorative Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <script src="load_components.js"></script>
+</body>
+
+</html>
