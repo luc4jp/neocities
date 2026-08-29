@@ -1,10 +1,13 @@
-// Function to load external HTML components
+// 1. External HTML Component Loader
 async function loadComponent(id, file) {
     try {
         const response = await fetch(file);
         if (response.ok) {
             const html = await response.text();
-            document.getElementById(id).innerHTML = html;
+            const element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = html;
+            }
             return true;
         } else {
             console.error(`Failed to load ${file}: ${response.status}`);
@@ -16,116 +19,88 @@ async function loadComponent(id, file) {
     }
 }
 
-// Initialize components and attach event listeners
+// 2. Prevent theme flash on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+});
+
+// 3. Main Site Initializer
 async function initSite() {
-    // Load components in parallel
+    // 非同期でパーツ（左メニュー含む）をすべて読み込み完了するまで待つ
     await Promise.all([
         loadComponent('sidebar-container', 'menu.html'),
         loadComponent('header-container', 'header.html'),
         loadComponent('footer-container', 'footer.html')
     ]);
 
-    initWidgets();
+    // テーマ状態の適用
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
 
-    // Initialize Toggle Logic (must run AFTER menu.html is loaded)
+    // ウィジェット初期化（時計・天気・カレンダー）
+    try {
+        initWidgets();
+    } catch (e) {
+        console.error('Widget initialization error:', e);
+    }
+
+    // テーマ切り替えボタンの設定
     const themeBtn = document.getElementById('themeToggle');
-    const fontBtn = document.getElementById('fontToggle');
-    const textSizeBtn = document.getElementById('textSizeToggle');
-    const body = document.body;
+    if (themeBtn) {
+        themeBtn.textContent = document.body.classList.contains('dark-theme') ? 'Light Mode' : 'Dark Mode';
 
-    if (themeBtn && fontBtn) {
-        // Load saved preferences
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-theme');
-            themeBtn.textContent = '☀️ Light';
-        }
-        if (localStorage.getItem('fontTheme') === 'alt') {
-            body.classList.add('font-theme-alt');
-            fontBtn.textContent = 'A Font: Pixel';
-        }
-        if (localStorage.getItem('textSize') === 'large') {
-            body.classList.add('text-size-large');
-            if (textSizeBtn) textSizeBtn.textContent = '🔍 Size: Large';
-        }
-
-        // Toggle Dark Mode
         themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-            if (body.classList.contains('dark-theme')) {
-                localStorage.setItem('theme', 'dark');
-                themeBtn.textContent = '☀️ Light';
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeBtn.textContent = '🌙 Dark';
-            }
-        });
-
-        // Toggle Font Theme
-        fontBtn.addEventListener('click', () => {
-            body.classList.toggle('font-theme-alt');
-            if (body.classList.contains('font-theme-alt')) {
-                localStorage.setItem('fontTheme', 'alt');
-                fontBtn.textContent = 'A Font: Pixel';
-            } else {
-                localStorage.setItem('fontTheme', 'main');
-                fontBtn.textContent = 'A Font: Grotesk';
-            }
-        });
-
-        // Toggle Text Size
-        if (textSizeBtn) {
-            textSizeBtn.addEventListener('click', () => {
-                body.classList.toggle('text-size-large');
-                if (body.classList.contains('text-size-large')) {
-                    localStorage.setItem('textSize', 'large');
-                    textSizeBtn.textContent = '🔍 Size: Large';
-                } else {
-                    localStorage.setItem('textSize', 'normal');
-                    textSizeBtn.textContent = '🔍 Size: Normal';
-                }
-            });
-        }
-    }
-
-    // Initialize custom instant tooltips
-    const buttons = document.querySelectorAll('.identity-btn');
-    if (buttons.length > 0) {
-        let tooltip = document.getElementById('custom-tooltip');
-        if (!tooltip) {
-            tooltip = document.createElement('div');
-            tooltip.id = 'custom-tooltip';
-            tooltip.className = 'win-tooltip';
-            document.body.appendChild(tooltip);
-        }
-
-        buttons.forEach(btn => {
-            btn.addEventListener('mouseenter', (e) => {
-                const titleText = btn.getAttribute('data-title');
-                if (titleText) {
-                    tooltip.innerHTML = titleText.replace(/\n/g, '<br>');
-                    tooltip.style.display = 'block';
-                }
-            });
-
-            btn.addEventListener('mousemove', (e) => {
-                // Offset slightly from cursor so it doesn't flicker
-                tooltip.style.left = (e.pageX + 15) + 'px';
-                tooltip.style.top = (e.pageY + 15) + 'px';
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                tooltip.style.display = 'none';
-            });
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
         });
     }
+
+    // メニューやページ描画完了後にツールチップ（補足表示）を初期化
+    initTooltips();
 }
 
-// Run initialization on DOM content loaded
-document.addEventListener('DOMContentLoaded', initSite);
+// Custom Tooltip Setup
+function initTooltips() {
+    const buttons = document.querySelectorAll('.identity-btn');
+    if (buttons.length === 0) return;
 
-// Initialize Sidebar Widgets (Clock, Weather, Calendar)
+    let tooltip = document.getElementById('custom-tooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'custom-tooltip';
+        tooltip.className = 'win-tooltip';
+        document.body.appendChild(tooltip);
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            const titleText = btn.getAttribute('data-title');
+            if (titleText) {
+                // 改行（\n や &#10;）を <br> に変換して表示
+                tooltip.innerHTML = titleText.replace(/(\r\n|\n|\r|&#10;)/g, '<br>');
+                tooltip.style.display = 'block';
+            }
+        });
+
+        btn.addEventListener('mousemove', (e) => {
+            tooltip.style.left = (e.pageX + 15) + 'px';
+            tooltip.style.top = (e.pageY + 15) + 'px';
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    });
+}
+
+// 5. Sidebar Widgets (Clock, Weather, Calendar)
 function initWidgets() {
-    // 1. Clocks
+    // Clocks
     const localClock = document.getElementById('local-clock');
     const japanClock = document.getElementById('japan-clock');
 
@@ -133,10 +108,8 @@ function initWidgets() {
         if (!localClock || !japanClock) return;
         const now = new Date();
 
-        // Local Time
         localClock.textContent = now.toLocaleTimeString();
 
-        // Japan Time
         const jstOptions = { timeZone: 'Asia/Tokyo', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
         japanClock.textContent = now.toLocaleTimeString('en-US', jstOptions);
     }
@@ -146,10 +119,9 @@ function initWidgets() {
         setInterval(updateClocks, 1000);
     }
 
-    // 2. Weather (Hiroshima)
+    // Weather (Hiroshima)
     const weatherWidget = document.getElementById('weather-widget');
     if (weatherWidget) {
-        // Open-Meteo API for Hiroshima
         fetch('https://api.open-meteo.com/v1/forecast?latitude=34.3853&longitude=132.4553&current_weather=true&timezone=Asia%2FTokyo')
             .then(res => res.json())
             .then(data => {
@@ -162,16 +134,16 @@ function initWidgets() {
                 if (cw.weathercode >= 95) condition = "Thunderstorm";
 
                 weatherWidget.innerHTML = `
-                    <div style="font-size: 24px; margin-bottom: 5px;">${cw.temperature}°C</div>
-                    <div style="font-weight: bold; color: var(--win-title-blue);">${condition}</div>
+                    <div style="font-size: 22px; font-weight: bold; font-family: var(--font-heading); color: var(--lilac-dark); margin-bottom: 2px;">${cw.temperature}°C</div>
+                    <div style="font-weight: bold; color: var(--lilac-main); font-size: 13px;">${condition}</div>
                 `;
             })
-            .catch(err => {
+            .catch(() => {
                 weatherWidget.textContent = "Weather unavailable";
             });
     }
 
-    // 3. Calendar (Current Month)
+    // Calendar
     const calendarWidget = document.getElementById('calendar-widget');
     if (calendarWidget) {
         const today = new Date();
@@ -180,9 +152,9 @@ function initWidgets() {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
 
-        let calHtml = `<div style="font-weight: bold; margin-bottom: 5px; background: var(--win-title-blue); color: #fff;">${year} / ${month + 1}</div>`;
-        calHtml += `<table style="width: 100%; text-align: center; border-collapse: collapse; font-size: 10px;">`;
-        calHtml += `<tr style="background: var(--win-face);"><th style="color:red;">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th style="color:blue;">S</th></tr><tr>`;
+        let calHtml = `<div style="font-weight: bold; font-family: var(--font-heading); margin-bottom: 6px; background: var(--lilac-sub-bg); color: var(--lilac-dark); border-bottom: 1.5px solid var(--lilac-border); border-radius: 0; padding: 2px 0; font-size: 13px;">${year} / ${month + 1}</div>`;
+        calHtml += `<table style="width: 100%; text-align: center; border-collapse: collapse; font-size: 11px; font-family: var(--font-body);">`;
+        calHtml += `<tr style="color: var(--text-muted); font-size: 10px;"><th style="color:#ff5f8d;">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th style="color:#70d6ff;">S</th></tr><tr>`;
 
         for (let i = 0; i < firstDay; i++) {
             calHtml += `<td></td>`;
@@ -190,10 +162,10 @@ function initWidgets() {
 
         let dayOfWeek = firstDay;
         for (let day = 1; day <= daysInMonth; day++) {
-            let style = "";
-            if (dayOfWeek === 0) style = "color: red;";
-            if (dayOfWeek === 6) style = "color: blue;";
-            if (day === today.getDate()) style += " background-color: var(--win-title-blue); color: #fff; font-weight: bold;";
+            let style = "padding: 2px;";
+            if (dayOfWeek === 0) style += " color: #ff5f8d;";
+            if (dayOfWeek === 6) style += " color: #70d6ff;";
+            if (day === today.getDate()) style += " background-color: var(--lilac-border); color: var(--lilac-dark); font-weight: bold; border-radius: 0;";
 
             calHtml += `<td style="${style}">${day}</td>`;
             dayOfWeek++;
@@ -205,19 +177,7 @@ function initWidgets() {
         calHtml += `</tr></table>`;
         calendarWidget.innerHTML = calHtml;
     }
-
-    // 4. Chatango BBS
-    const chatangoContainer = document.getElementById('chatango-container');
-    if (chatangoContainer) {
-        const script = document.createElement('script');
-        script.id = 'cid0020000440104421918';
-        script.dataset.cfasync = 'false';
-        script.async = true;
-        script.src = '//st.chatango.com/js/gz/emb.js';
-        script.style.width = '100%';
-        script.style.height = '100%';
-        script.textContent = '{"handle":"luc4jpbbs","arch":"js","styles":{"a":"C8C8C8","b":100,"c":"000000","d":"000000","k":"C8C8C8","l":"C8C8C8","m":"C8C8C8","p":"10","q":"C8C8C8","r":100,"fwtickm":1}}';
-        chatangoContainer.appendChild(script);
-    }
 }
 
+// 6. Global Execution Point
+document.addEventListener('DOMContentLoaded', initSite);
