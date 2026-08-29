@@ -6,6 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diary / 日記</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .right-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 20px;
+        }
+
+        .right-sidebar-box {
+            padding: 12px;
+            background-color: var(--grid-color, #ffffff);
+        }
+
+        .right-sidebar h2 {
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed var(--border-color, #ccc);
+            color: var(--lilac-dark, #333);
+        }
+
+        .diary-index-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .diary-index-list li {
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px dotted var(--border-color, #eee);
+        }
+
+        .diary-index-list li:last-child {
+            border-bottom: none;
+        }
+
+        .diary-index-list a {
+            text-decoration: none;
+            color: var(--text-color, #333);
+            display: block;
+        }
+
+        .diary-index-list a:hover {
+            color: var(--lilac-main, #666);
+            text-decoration: underline;
+        }
+
+        .diary-index-date {
+            font-size: 9px;
+            color: var(--text-muted, #888);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
+            .right-sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -14,7 +93,7 @@
         <!-- Left Sidebar (Loaded via JS) -->
         <div id="sidebar-container" class="sidebar"></div>
 
-        <!-- Right Main Content -->
+        <!-- Center Main Content -->
         <div class="window-box main-content">
             <!-- Decorative Header -->
             <div id="header-container"></div>
@@ -31,24 +110,36 @@
             <p style="text-align: center; margin-top: 40px;">
                 <a href="index.html">← Back to Top</a>
             </p>
+        </div><!-- /.window-box -->
 
-            <!-- Decorative Footer -->
-            <div id="footer-container"></div>
+        <!-- Right Sidebar (Index) -->
+        <div class="right-sidebar">
+            <div class="window-box right-sidebar-box">
+                <h2>★ Index</h2>
+                <ul id="diary-index-list" class="diary-index-list">
+                    <!-- Index links will be injected here by JavaScript -->
+                </ul>
+            </div>
         </div>
-    </div>
+    </div><!-- /.container -->
 
-    <!-- Load Components and Diary Data -->
+    <div id="footer-container"></div>
+
     <script src="load_components.js"></script>
     <script src="posts.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Render Diary Posts from posts.js
             const container = document.getElementById('diary-container');
+            const indexList = document.getElementById('diary-index-list');
 
             if (typeof diaryPosts !== 'undefined' && diaryPosts.length > 0) {
                 let htmlContent = '';
-                diaryPosts.forEach(post => {
+                let indexContent = '';
+
+                diaryPosts.forEach((post, index) => {
+                    const postId = `diary-post-${index}`;
+
                     let imageHtml = '';
                     if (post.imageUrl && post.imagePlaceholder) {
                         imageHtml = `<div class="diary-photo-frame"><div class="diary-photo-placeholder"><span>[ Place your photo here: ${post.imageUrl} ]</span></div></div>`;
@@ -57,25 +148,35 @@
                     }
 
                     htmlContent += `
-                <div class="diary-item">
-                    <div class="diary-meta">
-                        <span class="diary-date">${post.date}</span>
-                        <span>${post.author}</span>
+                    <div class="diary-item" id="${postId}" style="scroll-margin-top: 20px;">
+                        <div class="diary-meta">
+                            <span class="diary-date">${post.date}</span>
+                            <span>${post.author}</span>
+                        </div>
+                        <h3>${post.title}</h3>
+                        ${imageHtml}
+                        <p>${post.text_en}</p>
+                        <p>${post.text_ja}</p>
                     </div>
-                    <h3>${post.title}</h3>
-                    ${imageHtml}
-                    <p>${post.text_en}</p>
-                    <p>${post.text_ja}</p>
-                </div>
-                `;
+                    `;
+
+                    indexContent += `
+                    <li>
+                        <a href="#${postId}">
+                            <span class="diary-index-date">${post.date}</span>
+                            ${post.title}
+                        </a>
+                    </li>
+                    `;
                 });
+
                 container.innerHTML = htmlContent;
+                if (indexList) indexList.innerHTML = indexContent;
             } else {
                 container.innerHTML = '<p>No posts yet.</p>';
             }
         });
     </script>
-
 </body>
-
+<script src="load_components.js" defer></script>
 </html>
