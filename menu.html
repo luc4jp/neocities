@@ -13,39 +13,58 @@
             </ul>
         </li>
 
-        <li><a href="movie.html">Movie / 映像</a></li>
-        <li><a href="links.html">Links / リンク</a></li>
+        <li><a href="clips.html">Clips / 映像</a></li>
+        
+        <!-- 修正箇所: </li> を submenu-list の後ろに移動 -->
+        <li>
+            <a href="links.html">Links / リンク</a>
             <ul class="submenu-list">
                 <li><a href="links.html">My sites</a></li>
                 <li><a href="resources.html">Resources</a></li>
             </ul>
-        <li><a href="https://bylucajp.atabook.org/" target="_blank">BBS / 掲示板</a></li>
+        </li>
     </ul>
 </div>
 
+<!-- Theme Mode Widget -->
+<div class="window-box sidebar-box">
+    <div class="sidebar-title">THEME</div>
+    <div class="widget-container">
+        <button id="themeToggle" class="theme-toggle-btn-widget">Dark Mode</button>
+    </div>
+</div>
+
+<!-- Cbox BBS Widget -->
+<div class="window-box sidebar-box">
+    <div class="sidebar-title">BBS</div>
+    <div class="widget-container" style="padding: 0 !important;">
+        <iframe src="https://www3.cbox.ws/box/?boxid=3559727&boxtag=1H8ewX" width="100%" height="225" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" style="display: block; border: 0;"></iframe>
+    </div>
+</div>
+
 <!-- Calendar Widget -->
-<div class="window-box sidebar-box" style="text-align: center;">
+<div class="window-box sidebar-box">
     <div class="sidebar-title">CALENDAR</div>
-    <div id="calendar-widget" style="padding: 2px; background-color: #fff; border: 1px inset var(--win-shadow); text-align: center;">
-        <!-- Calendar will be generated here -->
+    <div id="calendar-widget" class="widget-container">
+        <!-- Calendar generated here -->
     </div>
 </div>
 
 <!-- Clock Widget -->
-<div class="window-box sidebar-box" style="text-align: center; font-size: 13px; font-family: var(--font-body);">
+<div class="window-box sidebar-box">
     <div class="sidebar-title">CLOCK</div>
-    <div class="clock-display" style="padding: 5px; background: #000; color: #0f0; border: 1px inset var(--win-shadow); text-align: center;">
-        <div class="clock-label" style="color: #fff; font-size: 10px; margin-bottom: 2px;">Your Local Time</div>
-        <div id="local-clock" style="font-weight: bold;">--:--:--</div>
-        <div class="clock-label" style="color: #fff; font-size: 10px; margin-top: 5px; margin-bottom: 2px;">Japan Time (JST)</div>
-        <div id="japan-clock" style="font-weight: bold;">--:--:--</div>
+    <div class="widget-container">
+        <div class="clock-label" style="font-size: 11px; margin-bottom: 2px;">Your Local Time</div>
+        <div id="local-clock" style="font-weight: bold; font-family: var(--font-heading); font-size: 15px;">--:--:--</div>
+        <div class="clock-label" style="font-size: 11px; margin-top: 8px; margin-bottom: 2px;">Japan Time (JST)</div>
+        <div id="japan-clock" style="font-weight: bold; font-family: var(--font-heading); font-size: 15px;">--:--:--</div>
     </div>
 </div>
 
 <!-- Weather Widget -->
-<div class="window-box sidebar-box" style="text-align: center; font-size: 12px;">
+<div class="window-box sidebar-box">
     <div class="sidebar-title">HIROSHIMA</div>
-    <div id="weather-widget" style="padding: 5px; background-color: #fff; border: 1px inset var(--win-shadow); text-align: center;">
+    <div id="weather-widget" class="widget-container">
         Loading weather...
     </div>
 </div>
