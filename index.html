@@ -4,71 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lucaのホムペ（令和）</title>
+    <title>Entrance</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body.entrance-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: var(--lilac-bg);
+        }
+
+        .entrance-card {
+            max-width: 540px;
+            width: 100%;
+            background-color: var(--lilac-card);
+            border: 1.5px solid var(--lilac-border);
+            box-shadow: var(--card-shadow);
+            padding: 36px 32px;
+            text-align: center;
+        }
+
+        .enter-btn {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 12px 36px;
+            background-color: var(--lilac-sub-bg);
+            color: var(--lilac-dark);
+            border: 1.5px solid var(--lilac-border);
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .enter-btn:hover {
+            background-color: var(--lilac-main);
+            color: #ffffff;
+        }
+
+        .entrance-notice {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-top: 24px;
+            border-top: 1.5px dashed var(--lilac-border);
+            padding-top: 20px;
+        }
+    </style>
 </head>
 
-<body>
+<body class="entrance-body" style="background-image: url('/images/resources/background_sky.gif'); background-repeat: repeat; background-attachment: fixed;">
+    <div class="entrance-card" style="position: relative; z-index: 1;">
+        <a href="http://king-lulu-deer.deviantart.com/" style="text-decoration: none; position: absolute; top: 10px; right: -260px; z-index: 10;">
+            <img src="/images/resources/king-lulu-deer.art.Starry-Eyed-665900250.gif" style="width: 400px; height: auto; border: none;">
+        </a>
 
-    <script>
-        if (navigator.userAgent.includes('Screenjesus')) {
-            document.body.innerHTML = '<img src="https://bylucajp.neocities.org/images/resources/CM200146.JPG" style="width:100vw;height:100vh;object-fit:cover;position:fixed;top:0;left:0;z-index:999999;">';
-        }
-    </script>
+        <h1 style="font-size: 26px; border-bottom: none; padding: 0; margin-bottom: 8px;">lucaのホムペ</h1>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Welcome to my personal website</p>
+        <a href="home.html" class="enter-btn"><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> ENTER <img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"></a>
 
-    <div class="container">
-        <!-- Left Sidebar (Loaded via JS) -->
-        <div id="sidebar-container" class="sidebar"></div>
-
-        <!-- Right Main Content -->
-        <div class="window-box main-content">
-            <!-- Decorative Header (Loaded via JS) -->
-            <div id="header-container"></div>
-
-            <!-- Marquee header simulation -->
-            <div class="marquee-wrapper">
-                <p class="marquee-text">ゆっくりしていってね☆彡 元平成女児が作ったサイトだけど、あの頃のふわふわ感が当時そこまでだったから馴染みのあるWin風にしているよ！</p>
-            </div>
-
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="https://bylucajp.neocities.org/images/resources/winblue.png" alt="Windows Graphic"
-                    style="max-width: 100%; height: auto; border: 1px solid var(--win-shadow);">
-            </div>
-
-            <h1>★ Welcome ★</h1>
-            <p>
-                Hello! I am a Japanese creator based in Hiroshima.
-                I created this website because I love the old internet (early 2000s in Japan)<br> </p>
-            <p>
-                英語圏向けに作ってるけど、全然日本語使っていく！
-            </p>
-
-            <hr>
-
-            <h2>What's New? / 更新履歴</h2>
-            <div class="whats-new-box">
-                <span class="date-stamp">2026.05.17</span> Website renewaled<br>
-            </div>
-
-            <hr>
-
-            <h2>My Work / 私の作ったもの</h2>
-            <p>
-                Please check out my <a href="cinema.html">Movie page</a> or my new <a href="diary.html">Diary</a>.
-                I shoot cinematic videos of Hiroshima and explain Japanese culture on YouTube.
-                If you are interested in Japan, you will definitely love it!
-            </p>
-
-            <p style="text-align: center; margin-top: 40px; color: var(--text-muted);">
-                <small>Please do not use my videos/photos without permission.</small>
-            </p>
-
-            <!-- Decorative Footer (Loaded via JS) -->
-            <div id="footer-container"></div>
+        <div class="entrance-notice">
+            <strong>✦ Notice / 注意事項 ✦</strong>
+            <ul style="text-align: left; margin: 14px 0 0 0; padding-left: 0; list-style: none; line-height: 2; font-size: 13px;">
+                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> No MIDI music here.</li>
+                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> This site is bilingual — English &amp; 日本語 mixed freely.</li>
+                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> JavaScript is required.</li>
+                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Best viewed on desktop.</li>
+                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Do not reproduce my photos, videos, or writing without permission.<br>
+                    &emsp;写真・動画・文章の無断転載はご遠慮ください。</li>
+                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Link-free! No need to ask to link this site.<br>
+                    &emsp;リンク歓迎</li>
+                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Made with love in Japan.</li>
+            </ul>
+           <a href="https://grrrl.valentinely.cc/" style="text-decoration: none; position: absolute; right: -10px; bottom: 10px; z-index: 10;">
+    　　　　<img src="images/resources/madebya-purple.png" style="height: auto; border: none;">
+　　　　　<a style="text-decoration: none; position: absolute; bottom: -80px; left: -170px; z-index: 10;">
+    　　　　<img src="/images/resources/ribon.gif" style="width: 150px; height: auto; border: none;">
+　　　　　　</a>
         </div>
     </div>
 
-    <script src="load_components.js"></script>
 </body>
 
 </html>
