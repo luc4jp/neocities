@@ -4,17 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lucaのホムペ（令和）</title>
+    <title>lucaのホムペ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <script>
-        if (navigator.userAgent.includes('Screenjesus')) {
-            document.body.innerHTML = '<img src="https://bylucajp.neocities.org/images/resources/CM200146.JPG" style="width:100vw;height:100vh;object-fit:cover;position:fixed;top:0;left:0;z-index:999999;">';
-        }
-    </script>
+<body class="entrance-body" style="background-image: url('/images/resources/background_sky.gif'); background-repeat: repeat; background-attachment: fixed;">
 
     <div class="container">
         <!-- Left Sidebar (Loaded via JS) -->
@@ -27,50 +22,74 @@
 
             <!-- Marquee header simulation -->
             <div class="marquee-wrapper">
-                <p class="marquee-text">ゆっくりしていってねミ☆ </p>
+                <p class="marquee-text">ゆっくりしていってねミ☆</p>
             </div>
 
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="https://bylucajp.neocities.org/images/resources/winblue.png" alt="Windows Graphic"
-                    style="max-width: 100%; height: auto; border: 1px solid var(--win-shadow);">
-            </div>
-
-            <h1>★ Welcome ★</h1>
+            <h1>Welcome</h1>
             <p>
-                Hello! I am a Japanese creator based in Hiroshima.
-                I created this website because I love the old internet (early 2000s in Japan)<br> </p>
+                Hello! I am a Japanese based in Hiroshima.<br>
+                I created this website because I love the old internet & 2000s Heisei pop aesthetic!<br>
+                The H!P Shrine section is the most fulfilling page right now.<br>
+            </p>
             <p>
-                英語圏向けに作ってるけど、全然日本語使っていく！
+            ミニモニ。世代の平成女児です。 2000年代の雰囲気がかなり好きなので個人サイトを作ってみました<br>
+              英語圏向けに作ってるけど、全然日本語も使っていくという強い気持ち<br>
+              ハロプロShrineを作りましたがお笑いとかプロレスとかいろんなものが好きなのでいつか建立したいです<br>
             </p>
 
             <hr>
 
             <h2>What's New? / 更新履歴</h2>
             <div class="whats-new-box">
-                <span class="date-stamp">2026.05.17</span> Website renewaled<br>
-                <span class="date-stamp">2026.08.17</span> Updated the diary section<br>
+                <span class="date-stamp">2026.08.28</span> Websire re-renewed!<br>
                 <span class="date-stamp">2026.08.24</span> Updated Hello! Project fan page section<br>
-
+                <span class="date-stamp">2026.08.17</span> Updated the diary section<br>
+                <span class="date-stamp">2026.05.17</span> Website renewed<br>
             </div>
 
             <hr>
 
-            <h2>My Work / 私の作ったもの</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                <div style="display: flex; flex-direction: column;">
+                    <h2>To Do List</h2>
+                    <div style="background-color: var(--lilac-sub-bg); padding: 14px 16px; border: 1.5px solid var(--lilac-border); flex-grow: 1; box-sizing: border-box;">
+                        <ul style="list-style-type: none; padding: 0; margin: 0; line-height: 1.9; font-size: 14.5px;">
+                            <li><input type="checkbox" checked disabled> サイトデザインを推しのメンカラにする</li>
+                            <li><input type="checkbox" disabled> ハロプロShrineでプレイリスト作成</li>
+                            <li><input type="checkbox" disabled> Diaryに写真追加</li>
+                            <li><input type="checkbox" disabled> 装飾用のGIFを集める</li>
+                            <li><input type="checkbox" disabled> 前略でやってた100の質問を掘り出すかもう一回やってAboutに貼る</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column;">
+                    <h2>Current Status</h2>
+                    <div style="background-color: var(--lilac-sub-bg); padding: 14px 16px; border: 1.5px solid var(--lilac-border); flex-grow: 1; box-sizing: border-box;">
+                        <ul style="list-style-type: none; padding: 0; margin: 0; line-height: 1.9; font-size: 14.5px;">
+                            <li><strong>Playing:</strong> Baldur's Gate 3 (PS5)</li>
+                            <li><strong>Reading:</strong> 読んでいない本について堂々と語る方法</li>
+                            <li><strong>Listening:</strong> 素肌は熱帯夜 / OCHA NORMA</li>
+                            <li><strong>Watching:</strong> GNOSIA (Anime)</li>
+                            <li><strong>Mood:</strong> Chill</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>My Work / 私のコンテンツ</h2>
             <p>
-                Please check out my <a href="cinema.html">Movie page</a> or my new <a href="diary.html">Diary</a>.
+                Please check out my <a href="clips.html">Clips page (映像)</a> or my <a href="diary.html">Diary (日記)</a>.<br>
                 I shoot cinematic videos of Hiroshima and explain Japanese culture on YouTube.
                 If you are interested in Japan, you will definitely love it!
             </p>
 
-            <p style="text-align: center; margin-top: 40px; color: var(--text-muted);">
-                <small>Please do not use my videos/photos without permission.</small>
-            </p>
-
-            <!-- Decorative Footer (Loaded via JS) -->
-            <div id="footer-container"></div>
-        </div>
-    </div>
-
+        </div> 
+    </div> 
+    <div id="footer-container"></div>
     <script src="load_components.js"></script>
 </body>
 
