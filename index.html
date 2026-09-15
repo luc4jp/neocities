@@ -2,92 +2,202 @@
 <html lang="en">
 
 <head>
+<script src="https://u.widget.st/ar.js"></script>
+    <link rel="icon" href="https://luc4jp.neocities.org/images/resources/favicon.ico?v=1" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrance</title>
-    <link rel="stylesheet" href="style.css">
+    <title>lucaのホムペ（令和） by luc4__jp</title>
+    <link rel="stylesheet" href="/style.css">
     <style>
-        body.entrance-body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            background-color: var(--lilac-bg);
+        .side-banner-card {
+            background-color: #ffffff;
         }
 
-        .entrance-card {
-            max-width: 540px;
-            width: 100%;
-            background-color: var(--lilac-card);
-            border: 1.5px solid var(--lilac-border);
-            box-shadow: var(--card-shadow);
-            padding: 36px 32px;
-            text-align: center;
+        body.dark-theme .side-banner-card {
+            background-color: var(--window-bg, #1e1e1e) !important;
         }
 
-        .enter-btn {
-            display: inline-block;
-            margin-top: 28px;
-            padding: 12px 36px;
-            background-color: var(--lilac-sub-bg);
-            color: var(--lilac-dark);
-            border: 1.5px solid var(--lilac-border);
-            font-family: var(--font-heading);
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
+        .whats-new-link {
+            text-decoration: none !important;
+            color: inherit;
+            display: block;
+            margin-bottom: 8px;
+            padding: 2px 4px;
+            transition: all 0.15s ease;
         }
 
-        .enter-btn:hover {
-            background-color: var(--lilac-main);
-            color: #ffffff;
+        .whats-new-link:hover {
+            text-decoration: underline !important;
+            background-color: var(--lilac-sub-bg, #f0e6ff);
+            color: var(--win-link-hover, #ff477e);
         }
 
-        .entrance-notice {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-top: 24px;
-            border-top: 1.5px dashed var(--lilac-border);
-            padding-top: 20px;
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
-<body class="entrance-body" style="background-image: url('/images/resources/background_sky.gif'); background-repeat: repeat; background-attachment: fixed;">
-    <div class="entrance-card" style="position: relative; z-index: 1;">
-        <a href="http://king-lulu-deer.deviantart.com/" style="text-decoration: none; position: absolute; top: 10px; right: -260px; z-index: 10;">
-            <img src="/images/resources/king-lulu-deer.art.Starry-Eyed-665900250.gif" style="width: 400px; height: auto; border: none;">
-        </a>
+<body class="entrance-body" style="background-image: url('/images/resources/bg/background_sky.gif'); background-repeat: repeat; background-attachment: fixed;">
 
-        <h1 style="font-size: 26px; border-bottom: none; padding: 0; margin-bottom: 8px;">lucaのホムペ</h1>
-        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Welcome to my personal website</p>
-        <a href="home.html" class="enter-btn"><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> ENTER <img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"></a>
+    <div class="container">
+        <div id="sidebar-container" class="sidebar"></div>
 
-        <div class="entrance-notice">
-            <strong>✦ Notice / 注意事項 ✦</strong>
-            <ul style="text-align: left; margin: 14px 0 0 0; padding-left: 0; list-style: none; line-height: 2; font-size: 13px;">
-                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> No MIDI music here.</li>
-                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> This site is bilingual — English &amp; 日本語 mixed freely.</li>
-                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> JavaScript is required.</li>
-                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Best viewed on desktop.</li>
-                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Do not reproduce my photos, videos, or writing without permission.<br>
-                    &emsp;写真・動画・文章の無断転載はご遠慮ください。</li>
-                <li><img src="/images/resources/hosi_murasaki.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Link-free! No need to ask to link this site.<br>
-                    &emsp;リンク歓迎</li>
-                <li><img src="/images/resources/hosi_kiiro.gif" alt="" style="vertical-align: middle; margin-right: 6px; width: 16px; height: 16px;"> Made with love in Japan.</li>
-            </ul>
-           <a href="https://grrrl.valentinely.cc/" style="text-decoration: none; position: absolute; right: -10px; bottom: 10px; z-index: 10;">
-    　　　　<img src="images/resources/madebya-purple.png" style="height: auto; border: none;">
-　　　　　<a style="text-decoration: none; position: absolute; bottom: -80px; left: -170px; z-index: 10;">
-    　　　　<img src="/images/resources/ribon.gif" style="width: 150px; height: auto; border: none;">
-　　　　　　</a>
+        <div class="window-box main-content" style="background-color: var(--lilac-card); border-style: solid; border-width: 12px; border-image-source: url('/images/resources/table/siro_lace4.gif'); border-image-slice: 30%; border-image-width: 24px; border-image-outset: 6px; border-image-repeat: round; padding: 20px; box-sizing: border-box;">
+            
+            <div style="text-align: center; margin: 0 auto 10px auto; line-height: 1.1;">
+                <h1 style="font-size: 38px; border-bottom: none; margin: 0; padding: 10px; display: inline-block; line-height: 1;">
+                    lucaのホムペ（令和）
+                </h1>
+                <div style="font-size: 16px; color: var(--text-muted); font-family: var(--font-heading); margin-top: 1px;">
+                 <a href="/katute_no_index.html" style="text-decoration: none; color: inherit;">by luc4__jp</a>
+                </div>
+            </div>
+
+            <h1 style="margin: 0; padding: 0; border-bottom: none; line-height: 1.1;">
+                <span style="font-family: 'gothic', sans-serif; font-size: 48px; font-weight: normal; letter-spacing: 2px; line-height: 1; margin-bottom: 2px; ">Welcome</span>
+            </h1>
+            
+            <div style="background: url('/images/resources/div/maruti.gif') repeat-x center / auto 100%; height: 24px; margin: 16px 0; width: 100%; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);"></div>
+
+            <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 280px;">
+                    <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+                        <img src="/images/gallery/pokecen.jpg" alt="Welcome Image" style="width: 240px; height: auto; flex-shrink: 0; border-radius: 4px;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin-top: 0;">
+                               Created this personal site because I love the 2000s aesthetic—mostly got sick of all the ads and corporate noise.<br>
+                English is still a lifelong learning project for me. I have way too many things I love.<br>
+I update Status.cafe way more often than What's new.<br>
+                <span class="lang-jp" style="font-size: 15px; color: var(--text-muted); display: block; margin-top: 8px;">
+                2000年代の雰囲気好きなミニモニ。世代の平成女児が個人サイトを作ってみました。広告とか企業のあれこればっかりで疲れたし。英語は一生勉強中。好きなものが多すぎて困ってる。<br>
+                What's newよりStatus.cafeの方が更新率高め。
+                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+ <div style="width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+                   <div style="padding: 14px; background-color: var(--window-bg); color: var(--text-color); border: 0px solid var(--border-color); border-radius: 4px; box-sizing: border-box;">
+                       <h2 style="font-family: 'oldlondon', sans-serif; font-size: 25px; margin-top: 0; margin-bottom: 2px; padding-bottom: 0px; border-bottom: 0px dashed var(--border-color); color: var(--title-color, var(--text-color)); line-height: 1;">What's New?</h2>
+                       <div class="whats-new-box" style="height: 280px; font-size: 12px; line-height: 1.6; margin-bottom: 16px; overflow-y: auto; color: var(--text-color);">
+                           <a href="/hp/" class="whats-new-link">
+                           <span class="date-stamp" style="color: var(--text-muted);">2026.09.09</span>ハロプロ関連のページを全て一通り書き終えました<img src="/images/resources/icon/new.gif" alt="UP" style="vertical-align: middle;">
+                           </a>
+                           <a href="/photos" class="whats-new-link">
+                               <span class="date-stamp" style="color: var(--text-muted);">2026.09.08</span>写真と一言だけ載せるPhotosページを作成しました
+                           </a>
+                           <div class="whats-new-item" style="margin-bottom: 8px;">
+                               <span class="date-stamp" style="color: var(--text-muted);">2026.09.06</span>トップページを中心にGIFでめっちゃデコりました
+                           </div>
+                           <a href="/journal/2026/0904_beyo_lv.html" class="whats-new-link">
+                               <span class="date-stamp" style="color: var(--text-muted);">2026.09.04</span>Journalにくるみん卒コンの長文お気持ちを書きました
+                           </a>
+                           <a href="/about.html" class="whats-new-link">
+                               <span class="date-stamp" style="color: var(--text-muted);">2026.09.01</span><br>前略でやってた100の質問を挫折して、Aboutページを更新しました
+                           </a>
+                           <a href="/hp/" class="whats-new-link" style="margin-bottom: 0;">
+                               <span class="date-stamp" style="color: var(--text-muted);">2026.08.24</span><br>ハロプロのファンページ作成
+                           </a>
+                       </div>
+                   </div>
+               </div>
+            </div>
+
+            <div style="background: url('/images/resources/div/lace.gif') repeat-x center / auto 100%; height: 24px; margin: 16px 0; width: 100%; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);"></div>
+            
+                        <h2 style="font-family: 'oldlondon', sans-serif; font-size: 25px; margin-top: 0; padding-bottom: 0px; border-bottom: 0px dashed var(--border-color); color: var(--title-color, var(--text-color)); line-height: 1; margin-bottom: 2px;">My Works</h2>
+<p>
+    Check out <a href="/clips.html">Clips</a> and <a href="/links.html">Links</a> for the videos I've made and the accounts where I post them. You'll find my photos on <a href="/photos">Photos</a> and random thoughts on <a href="/journal.html">Journal</a> (both get updated whenever I feel like it, so check back sometimes and you might find something new!).<br>
+    <span class="lang-jp" style="font-size: 15px; color: var(--text-muted); display: block; margin-top: 6px;">
+        <a href="/clips.html">Clips</a>や<a href="/links.html">Links</a>にわたしの作成している動画と、それを載せているアカウントがあります。<a href="/photos">Photos</a>には撮影した写真、<a href="/journal.html">Journal</a>には思ったことをたらたら書いています。写真や日記は不定期にうpしてるので、たまに覗いたら色々追加されてるかも！
+    </span>
+</p>
+
+            <div style="background: url('/images/resources/div/lace.gif') repeat-x center / auto 100%; height: 24px; margin: 16px 0; width: 100%; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);"></div>
+
+            <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; width: 100%; margin-bottom: 24px;">
+                
+                <div style="width: 100%; max-width: 280px; flex-shrink: 0; display: flex; flex-direction: column;">
+        <h2 style="font-family: 'oldlondon', sans-serif; font-size: 25px; margin-top: 0; padding-bottom: 0px; border-bottom: 0px dashed var(--border-color); color: var(--title-color, var(--text-color)); line-height: 1; margin-bottom: 2px;">To Do List</h2>
+        <div style="position: relative; width: 100%; max-width: 280px; aspect-ratio: 460 / 860; background: url('/images/resources/box/infobar.gif') 0 0 / 100% 100% no-repeat; box-sizing: border-box;">
+            <div style="position: absolute; top: 10.5%; left: 24.5%; width: 45%; height: 87%; overflow-y: auto; overflow-x: hidden; padding: 2px; box-sizing: border-box;">
+                <ul style="list-style-type: none; padding: 0; margin: 0; line-height: 1.9; font-size: clamp(10px, 2.2vw, 11px); overflow-wrap: anywhere; word-break: break-word; font-family: 'DotGothic16', sans-serif; color: #222222;">
+                    <li><input type="checkbox" disabled> ハロプロプレイリストを作る</li>
+                    <li><input type="checkbox" disabled> トプ画を手書きのなにかにする</li>
+                    <li><input type="checkbox" disabled> 好きを集めたページを作る</li>
+                </ul>
+            </div>
+        </div>
+                </div>
+
+                <div style="flex: 1; min-width: 280px; max-width: 500px; display: flex; flex-direction: column;">
+                    <h2 style="font-family: 'oldlondon', sans-serif; font-size: 25px; margin-top: 0; margin-bottom: 10px; padding-bottom: 0px; border-bottom: 0px dashed var(--border-color); color: var(--title-color, var(--text-color)); line-height: 1;">Current Status</h2>
+                    <div style="position: relative; width: 100%; max-width: 500px; aspect-ratio: 735 / 418; background: url('/images/resources/box/digicam.gif') 0 0 / 100% 100% no-repeat; box-sizing: border-box;">
+                        <div style="position: absolute; top: 17.5%; left: 12.9%; width: 55.5%; height: 78.5%; overflow-y: auto; overflow-x: hidden; padding: 4px; box-sizing: border-box; color: #ffffff;">
+                            <ul style="list-style-type: none; padding: 0; margin: 0; line-height: 1.5; font-size: clamp(9px, 2.2vw, 13.5px); overflow-wrap: anywhere; word-break: break-word;">
+                                <li><strong>Playing:</strong> Baldur's Gate 3 (PS5)</li>
+                                <li><strong>Reading:</strong> 読んでいない本について堂々と語る方法</li>
+                                <li><strong>Listening:</strong> 素肌は熱帯夜 / OCHA NORMA</li>
+                                <li><strong>Watching:</strong> GNOSIA (Anime)</li>
+                                <li><strong>Mood:</strong> Chill</li>
+                            </ul>
+                        </div>
+                    </div>
+ <br>
+                    <div class="profile-basic-info" style="width: 100%; box-sizing: border-box; margin-top: 12px;">
+                                <fieldset class="identity-section" style="margin: 0; background-color: var(--lilac-card); background-clip: padding-box; border-style: solid; border-width: 12px; border-image-source: url('/images/resources/table/win.gif'); border-image-slice: 40%; border-image-width: 24px; border-image-outset: 0px; border-image-repeat: round; padding: 10px; box-sizing: border-box;">
+                                    <div class="button-container" style="text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;">
+                                <img src="https://i.imgur.com/wqvfdXO.png" class="identity-btn" data-title="日本人&#10;Japanese">
+                                <img src="https://i.imgur.com/jgeciGJ.png" class="identity-btn" data-title="英語はそこそこ&#10;My English is okay-ish">
+                                <img src="https://i.ibb.co/dsH16vwS/Pastel-Goth.png" class="identity-btn" data-title="自分ではやれない&#10;Me? I could never.">
+                                <img src="https://i.ibb.co/G4GCnjhN/Auroracore.png" class="identity-btn" data-title="ゲームのキャラクリとかもこれでやりがち&#10;I always end up mixing this into game character creation too.">
+                                <img src="https://i.postimg.cc/0yMJZ5V2/Mac_OS.png" class="identity-btn" data-title="長年WinユーザーだったからMacのショートカットとか全くわかってない&#10;Still lost with Mac shortcuts">
+                                <img src="https://i.imgur.com/K9W8Tym.png" class="identity-btn" data-title="シナモロール♡&#10;Cinnamoroll♡">
+                                <img src="/images/resources/identity/ib_H!P_Idols.png" class="identity-btn" data-title="オタクだからバーイベのセトリある&#10;I already planned my birthday event setlist">
+                                <img src="/images/resources/identity/ib_Hello!_Project.png" class="identity-btn" data-title="BEYOOOOONDSさんのヲタクをさせていただいている&#10;Proud fan of BEYOOOOONDS">
+                                <img src="https://i.imgur.com/mmoRz30.png" class="identity-btn" data-title="CoBのファンです&#10;Huge fan of Children of Bodom">
+                                <img src="https://i.imgur.com/v75VdUE.png" class="identity-btn" data-title="00-10年代は追ってた&#10;Used to follow the 00s-10s scene">
+                                <img src="https://i.imgur.com/SRgBmST.png" class="identity-btn" data-title="JacksonのRandy V愛用&#10;My go-to is the Jackson Randy V">
+                                <img src="https://i.ibb.co/JR4SS2qg/Super-Smash-Bros-64.png" class="identity-btn" data-title="ネス使いです&#10;Ness main.">
+                                <img src="https://i.imgur.com/wthFnM3.png" class="identity-btn" data-title="パブロ使いです&#10;Inkbrush main.">
+                                <img src="https://i.imgur.com/6bnCltc.png" class="identity-btn" data-title="2のルシア編かなり好き&#10;Big fan of Lucia's disc in DMC2">
+                                <img src="https://i.imgur.com/iR2WNmx.png" class="identity-btn" data-title="マレニアに1週間かかった&#10;Took me a whole week to beat Malenia">
+                                <img src="https://i.ibb.co/N6rdp4by/Oblivion.png" class="identity-btn" data-title="盗賊ギルドのクエスト面白かった&#10;The Thieves Guild questline was awesome">
+                                <img src="https://i.imgur.com/sxmoj5E.png" class="identity-btn" data-title="何十周もカジートでやってる&#10;Done dozens of Khajiit runs">
+                                <img src="https://i.ibb.co/KxfWWQGC/Mass-Effect.png" class="identity-btn" data-title="ギャレス好き&#10;Love Garrus">
+                                <img src="https://i.ibb.co/KCH3Cn7/Rhythm-Tengoku.png" class="identity-btn" data-title="ハロヲタとしての嗜み&#10;A essential practice as a Hello! Project fan">
+                                <img src="https://i.ibb.co/sdkpmCBz/Animal-Crossing-full.png" class="identity-btn" data-title="メリヤスとキャビアが好き&#10;Merengue and Felicity are my absolute favorites.">
+                                <img src="https://i.imgur.com/wz3O5LC.png" class="identity-btn" data-title="急にスケベになるけどゲームの部分が本当に面白い&#10;The romance comes at you fast, but the gameplay is top-tier.">
+                                <img src="https://i.ibb.co/4ZP8LP94/Pokemon.png" class="identity-btn" data-title="グッズが極端にないキノガッサ使いをしています&#10;Breloom main, despite the severe lack of merch">
+                                <img src="https://i.ibb.co/7t85L6z4/Kirby.png" class="identity-btn" data-title="カービィ64はマジでやりこんだ&#10;Kirby 64 was my entire childhood.">
+                                <img src="https://i.ibb.co/nqVvdW2f/Stardew-Valley.png" class="identity-btn" data-title="牧場物語以来久々にこういう系ハマった&#10;First farming sim I've been hooked on since Harvest Moon">
+                                <img src="https://i.imgur.com/exwSuNC.png" class="identity-btn" data-title="ジョジョ4部が一番好き&#10;Part 4 is my absolute favorite Jojo part">
+                                <img src="https://i.imgur.com/B771gaJ.png" class="identity-btn" data-title="ヒソカが一番好き♤&#10;Hisoka is my favorite ♤">
+                                <img src="https://i.imgur.com/r4U8s9c.png" class="identity-btn" data-title="ゴテンクスいいですよね&#10;Gotta love Gotenks.">
+                                <img src="https://i.imgur.com/ioHnU6S.png" class="identity-btn" data-title="日本茶と中国茶と台湾茶と紅茶が好き&#10;I love Japanese green tea, Chinese tea, Taiwanese tea, and black tea.">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="background: url('/images/resources/div/lace.gif') repeat-x center / auto 100%; height: 24px; margin: 16px 0; width: 100%; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);"></div>
+
+
+
+            
         </div>
     </div>
+    </div>
 
+    <div id="footer-container"></div>
+    <script data-goatcounter="https://luc4.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script src="/load_components.js"></script>
 </body>
 
 </html>

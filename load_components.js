@@ -1,74 +1,225 @@
-// 1. External HTML Component Loader
-async function loadComponent(id, file) {
+document.addEventListener('DOMContentLoaded', () => {
+    // テーマの初期適用
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+    initSite();
+});
+
+async function initSite() {
+    // 1. 共通パーツ（メニュー・フッター）の読み込み
+    await loadComponents();
+
+    // パーツ読み込み完了後にメニューのイベントを設定
+    setupMenuAccordion();
+
+    setupThemeToggle();
+    initTooltips();
+    setupSeamlessNavigation();
+    fetchStatusCafe();
+}
+
+async function loadComponents() {
+    const sidebarContainer = document.getElementById('sidebar-container');
+    const footerContainer = document.getElementById('footer-container');
+
     try {
-        const response = await fetch(file);
-        if (response.ok) {
-            const html = await response.text();
-            const element = document.getElementById(id);
-            if (element) {
-                element.innerHTML = html;
-            }
-            return true;
-        } else {
-            console.error(`Failed to load ${file}: ${response.status}`);
-            return false;
+        // 左メニューの読み込み
+        if (sidebarContainer && sidebarContainer.children.length === 0) {
+            const res = await fetch('/menu.html', { cache: 'no-cache' });
+            if (res.ok) sidebarContainer.innerHTML = await res.text();
         }
-    } catch (error) {
-        console.error(`Error fetching ${file}:`, error);
-        return false;
+        // フッターの読み込み
+        if (footerContainer && footerContainer.children.length === 0) {
+            const res = await fetch('/footer.html', { cache: 'no-cache' });
+            if (res.ok) footerContainer.innerHTML = await res.text();
+        }
+    } catch (e) {
+        console.error('Components load error:', e);
     }
 }
 
-// 2. Prevent theme flash on DOM load
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-    }
-});
+function fetchStatusCafe() {
+    if (!document.getElementById('statuscafe')) return;
 
-// 3. Main Site Initializer
-async function initSite() {
-    // 非同期でパーツ（左メニュー含む）をすべて読み込み完了するまで待つ
-    await Promise.all([
-        loadComponent('sidebar-container', 'menu.html'),
-        loadComponent('header-container', 'header.html'),
-        loadComponent('footer-container', 'footer.html')
-    ]);
+    const oldScript = document.getElementById('statuscafe-script');
+    if (oldScript) oldScript.remove();
 
-    // テーマ状態の適用
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-    }
+    const script = document.createElement('script');
+    script.id = 'statuscafe-script';
+    script.src = 'https://status.cafe/current-status.js?name=luc4';
+    document.body.appendChild(script);
+}
 
-    // ウィジェット初期化（時計・天気・カレンダー）
-    try {
-        initWidgets();
-    } catch (e) {
-        console.error('Widget initialization error:', e);
-    }
-
-    // テーマ切り替えボタンの設定
+function setupThemeToggle() {
     const themeBtn = document.getElementById('themeToggle');
     if (themeBtn) {
-        themeBtn.textContent = document.body.classList.contains('dark-theme') ? 'Light Mode' : 'Dark Mode';
+        const updateButton = () => {
+            const isDark = document.body.classList.contains('dark-theme');
+            themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        };
 
-        themeBtn.addEventListener('click', () => {
+        updateButton();
+
+        themeBtn.onclick = (e) => {
+            if (e) e.preventDefault();
             document.body.classList.toggle('dark-theme');
             const isDark = document.body.classList.contains('dark-theme');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-        });
+            updateButton();
+        };
     }
-
-    // メニューやページ描画完了後にツールチップ（補足表示）を初期化
-    initTooltips();
 }
 
-// Custom Tooltip Setup
-function initTooltips() {
-    const buttons = document.querySelectorAll('.identity-btn');
-    if (buttons.length === 0) return;
+// ページをフェッチして中身を入れ替える共通関数
+async function fetchAndSwitchPage(url, pushState = true) {
+    try {
+        const targetUrlObj = new URL(url, window.location.href);
+        const targetHash = targetUrlObj.hash;
 
+        const response = await fetch(url, { cache: 'no-cache' });
+        if (!response.ok) {
+            window.location.href = url;
+            return;
+        }
+
+        const responseUrlObj = new URL(response.url);
+        let finalPath = responseUrlObj.pathname;
+
+        if (finalPath.endsWith('/index.html')) {
+            finalPath = finalPath.slice(0, -10);
+        }
+
+        const fullFinalPath = finalPath + targetHash;
+
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        const newMain = doc.querySelector('.main-content');
+        const currentMain = document.querySelector('.main-content');
+        const container = document.querySelector('.container');
+
+        if (!newMain || !currentMain || !container) {
+            window.location.href = url;
+            return;
+        }
+
+        if (doc.body) {
+            const newBgImage = doc.body.style.backgroundImage;
+            document.body.style.backgroundImage = newBgImage ? newBgImage : 'none';
+
+            const isDark = localStorage.getItem('theme') === 'dark';
+            document.body.className = doc.body.className;
+            if (isDark) {
+                document.body.classList.add('dark-theme');
+            }
+        }
+
+        document.querySelectorAll('head style[data-dynamic-style]').forEach(el => el.remove());
+        const newStyles = doc.querySelectorAll('style');
+        newStyles.forEach(styleEl => {
+            const clonedStyle = styleEl.cloneNode(true);
+            clonedStyle.setAttribute('data-dynamic-style', 'true');
+            document.head.appendChild(clonedStyle);
+        });
+
+        if (pushState) {
+            history.pushState({ path: fullFinalPath }, '', fullFinalPath);
+        }
+        document.title = doc.title;
+
+        currentMain.innerHTML = newMain.innerHTML;
+
+        await executeScripts(currentMain);
+
+        setupThemeToggle();
+        initTooltips();
+        fetchStatusCafe();
+
+        if (targetHash) {
+            const targetEl = document.querySelector(targetHash);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo(0, 0);
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    } catch (err) {
+        console.error('Navigation error:', err);
+        window.location.href = url;
+    }
+}
+
+async function executeScripts(container) {
+    const scripts = Array.from(container.querySelectorAll('script'));
+    for (const oldScript of scripts) {
+        const newScript = document.createElement('script');
+        
+        Array.from(oldScript.attributes).forEach(attr => {
+            newScript.setAttribute(attr.name, attr.value);
+        });
+
+        if (oldScript.src) {
+            await new Promise((resolve) => {
+                newScript.onload = resolve;
+                newScript.onerror = () => {
+                    console.error(`Failed to load script: ${oldScript.src}`);
+                    resolve();
+                };
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        } else {
+            newScript.textContent = oldScript.textContent;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        }
+    }
+}
+
+function setupSeamlessNavigation() {
+    document.addEventListener('click', async (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const rawHref = link.getAttribute('href');
+        if (!rawHref || rawHref.startsWith('javascript:') || link.target === '_blank') {
+            return;
+        }
+
+        if (rawHref.startsWith('#')) {
+            e.preventDefault();
+            if (rawHref === '#') return;
+            
+            const targetEl = document.querySelector(rawHref);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, '', rawHref);
+            }
+            return;
+        }
+
+        if (link.origin !== window.location.origin) {
+            return;
+        }
+
+        if (link.href === window.location.href) {
+            e.preventDefault();
+            return;
+        }
+
+        e.preventDefault();
+        await fetchAndSwitchPage(link.href, true);
+    });
+
+    window.addEventListener('popstate', async () => {
+        await fetchAndSwitchPage(window.location.href, false);
+    });
+}
+
+let tooltipInitialized = false;
+function initTooltips() {
     let tooltip = document.getElementById('custom-tooltip');
     if (!tooltip) {
         tooltip = document.createElement('div');
@@ -77,107 +228,51 @@ function initTooltips() {
         document.body.appendChild(tooltip);
     }
 
-    buttons.forEach(btn => {
-        btn.addEventListener('mouseenter', () => {
+    if (tooltipInitialized) return;
+    tooltipInitialized = true;
+
+    document.addEventListener('mouseover', (e) => {
+        const btn = e.target.closest('.identity-btn');
+        if (btn) {
             const titleText = btn.getAttribute('data-title');
             if (titleText) {
-                // 改行（\n や &#10;）を <br> に変換して表示
                 tooltip.innerHTML = titleText.replace(/(\r\n|\n|\r|&#10;)/g, '<br>');
                 tooltip.style.display = 'block';
             }
-        });
+        }
+    });
 
-        btn.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
+        if (tooltip.style.display === 'block') {
             tooltip.style.left = (e.pageX + 15) + 'px';
             tooltip.style.top = (e.pageY + 15) + 'px';
-        });
+        }
+    });
 
-        btn.addEventListener('mouseleave', () => {
+    document.addEventListener('mouseout', (e) => {
+        const btn = e.target.closest('.identity-btn');
+        if (btn) {
             tooltip.style.display = 'none';
-        });
+        }
     });
 }
 
-// 5. Sidebar Widgets (Clock, Weather, Calendar)
-function initWidgets() {
-    // Clocks
-    const localClock = document.getElementById('local-clock');
-    const japanClock = document.getElementById('japan-clock');
-
-    function updateClocks() {
-        if (!localClock || !japanClock) return;
-        const now = new Date();
-
-        localClock.textContent = now.toLocaleTimeString();
-
-        const jstOptions = { timeZone: 'Asia/Tokyo', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        japanClock.textContent = now.toLocaleTimeString('en-US', jstOptions);
-    }
-
-    if (localClock || japanClock) {
-        updateClocks();
-        setInterval(updateClocks, 1000);
-    }
-
-    // Weather (Hiroshima)
-    const weatherWidget = document.getElementById('weather-widget');
-    if (weatherWidget) {
-        fetch('https://api.open-meteo.com/v1/forecast?latitude=34.3853&longitude=132.4553&current_weather=true&timezone=Asia%2FTokyo')
-            .then(res => res.json())
-            .then(data => {
-                const cw = data.current_weather;
-                let condition = "Clear";
-                if (cw.weathercode >= 1 && cw.weathercode <= 3) condition = "Cloudy";
-                if (cw.weathercode >= 45 && cw.weathercode <= 48) condition = "Fog";
-                if (cw.weathercode >= 51 && cw.weathercode <= 67) condition = "Rain";
-                if (cw.weathercode >= 71 && cw.weathercode <= 82) condition = "Snow";
-                if (cw.weathercode >= 95) condition = "Thunderstorm";
-
-                weatherWidget.innerHTML = `
-                    <div style="font-size: 22px; font-weight: bold; font-family: var(--font-heading); color: var(--lilac-dark); margin-bottom: 2px;">${cw.temperature}°C</div>
-                    <div style="font-weight: bold; color: var(--lilac-main); font-size: 13px;">${condition}</div>
-                `;
-            })
-            .catch(() => {
-                weatherWidget.textContent = "Weather unavailable";
+// メニューの折りたたみ処理（関数化）
+function setupMenuAccordion() {
+    const parentLinks = document.querySelectorAll('.menu-list > li');
+    
+    parentLinks.forEach(li => {
+        const submenu = li.querySelector('.submenu-list');
+        const link = li.querySelector('a');
+        
+        if (submenu && link) {
+            li.classList.add('has-submenu');
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 800) {
+                    e.preventDefault(); 
+                    submenu.classList.toggle('is-open');
+                }
             });
-    }
-
-    // Calendar
-    const calendarWidget = document.getElementById('calendar-widget');
-    if (calendarWidget) {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDay = new Date(year, month, 1).getDay();
-
-        let calHtml = `<div style="font-weight: bold; font-family: var(--font-heading); margin-bottom: 6px; background: var(--lilac-sub-bg); color: var(--lilac-dark); border-bottom: 1.5px solid var(--lilac-border); border-radius: 0; padding: 2px 0; font-size: 13px;">${year} / ${month + 1}</div>`;
-        calHtml += `<table style="width: 100%; text-align: center; border-collapse: collapse; font-size: 11px; font-family: var(--font-body);">`;
-        calHtml += `<tr style="color: var(--text-muted); font-size: 10px;"><th style="color:#ff5f8d;">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th style="color:#70d6ff;">S</th></tr><tr>`;
-
-        for (let i = 0; i < firstDay; i++) {
-            calHtml += `<td></td>`;
         }
-
-        let dayOfWeek = firstDay;
-        for (let day = 1; day <= daysInMonth; day++) {
-            let style = "padding: 2px;";
-            if (dayOfWeek === 0) style += " color: #ff5f8d;";
-            if (dayOfWeek === 6) style += " color: #70d6ff;";
-            if (day === today.getDate()) style += " background-color: var(--lilac-border); color: var(--lilac-dark); font-weight: bold; border-radius: 0;";
-
-            calHtml += `<td style="${style}">${day}</td>`;
-            dayOfWeek++;
-            if (dayOfWeek > 6) {
-                calHtml += `</tr><tr>`;
-                dayOfWeek = 0;
-            }
-        }
-        calHtml += `</tr></table>`;
-        calendarWidget.innerHTML = calHtml;
-    }
+    });
 }
-
-// 6. Global Execution Point
-document.addEventListener('DOMContentLoaded', initSite);
